@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagamento | Bellemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Menu/menu.css">
+  <link rel="stylesheet" href="pagamento.css">
+</head>
+<body>
+  <main class="pagamento">
+    <section id="telaCheckout">
+      <a class="logo" href="../Menu/menu.html">Bellemi<small>&#10047;</small></a>
+      <h1>Finalizar compra</h1>
+      <p class="introducao">Confira seu pedido e escolha a forma de pagamento.</p>
+
+      <section class="painel" aria-labelledby="tituloResumo">
+        <h2 id="tituloResumo">Seu pedido</h2>
+        <ul id="itensPedido" class="itens-pedido"></ul>
+        <div class="total"><span>Total</span><strong id="totalPedido">R$ 0,00</strong></div>
+      </section>
+
+      <form id="formPagamento" class="painel">
+        <label class="estado-entrega" for="estadoEntrega">
+          Estado de entrega
+          <select id="estadoEntrega" name="estadoEntrega" required disabled>
+            <option value="">Carregando estados...</option>
+          </select>
+        </label>
+        <button id="tentarCarregarFretes" class="botao" type="button" hidden>Tentar carregar estados novamente</button>
+        <fieldset id="campoFormasPagamento" disabled>
+          <legend>Forma de pagamento</legend>
+          <div id="formasPagamento" aria-live="polite">Carregando formas de pagamento...</div>
+        </fieldset>
+        <button id="tentarCarregarFormas" class="botao" type="button" hidden>Tentar novamente</button>
+        <p class="aviso-pagamento">Ambiente de demonstração: pagamentos não são processados.</p>
+        <button id="continuarPagamento" class="botao" type="submit" disabled>Continuar</button>
+        <a class="voltar" href="../Maquiagem/maquiagem.html">Voltar para os produtos</a>
+        <p id="mensagem" class="mensagem" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section id="telaPix" class="tela-pix" aria-labelledby="tituloPix" hidden>
+      <h1 id="tituloPix">Pagamento via Pix</h1>
+      <div id="qrcodePix" class="qrcode-pix" role="img" aria-label="QR Code ilustrativo, não válido para pagamento"></div>
+      <p class="aviso-pix">QR Code fictício para demonstração; não é válido para pagamento.</p>
+      <p class="valor-pix"><span>Valor</span><strong id="valorPix"></strong></p>
+      <button id="confirmarPagamento" class="botao" type="button">Confirmar pagamento</button>
+      <p id="mensagemPix" class="mensagem" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="telaCartao" class="tela-cartao" aria-labelledby="tituloCartao" hidden>
+      <h1 id="tituloCartao">Pagamento com cartão</h1>
+      <p class="aviso-cartao">Demonstração sem cobrança real: não informe o número completo nem o código de segurança. Salvamos somente o nome, a bandeira, a validade e os últimos 4 dígitos.</p>
+      <div id="cartaoSalvo" class="cartao-salvo" hidden></div>
+      <form id="formDadosCartao" class="form-cartao" hidden>
+        <label>Nome impresso no cartão
+          <input id="nomeTitular" name="nomeTitular" type="text" maxlength="100" autocomplete="cc-name" required>
+        </label>
+        <label>Últimos 4 dígitos
+          <input id="ultimosDigitos" name="ultimosDigitos" type="text" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" autocomplete="off" required>
+        </label>
+        <label>Bandeira
+          <select id="bandeiraCartao" name="bandeira" required>
+            <option value="">Selecione a bandeira...</option>
+            <option>Visa</option>
+            <option>Mastercard</option>
+            <option>Elo</option>
+            <option>American Express</option>
+            <option>Hipercard</option>
+          </select>
+        </label>
+        <div class="validade-cartao">
+          <label for="mesValidade">Mês de validade
+            <select id="mesValidade" name="mesValidade" required>
+              <option value="">Mês</option>
+              <option value="1">01</option><option value="2">02</option>
+              <option value="3">03</option><option value="4">04</option>
+              <option value="5">05</option><option value="6">06</option>
+              <option value="7">07</option><option value="8">08</option>
+              <option value="9">09</option><option value="10">10</option>
+              <option value="11">11</option><option value="12">12</option>
+            </select>
+          </label>
+          <label for="anoValidade">Ano de validade
+            <input id="anoValidade" name="anoValidade" type="number" required>
+          </label>
+        </div>
+      </form>
+      <p class="valor-pix"><span>Valor</span><strong id="valorCartao"></strong></p>
+      <button id="confirmarPagamentoCartao" class="botao" type="button">Confirmar pagamento</button>
+      <p id="mensagemCartao" class="mensagem" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="telaBoleto" class="tela-boleto" aria-labelledby="tituloBoleto" hidden>
+      <h1 id="tituloBoleto">Boleto de demonstração</h1>
+      <p class="aviso-boleto">Este boleto é fictício e não pode ser pago. Nenhuma cobrança real será feita.</p>
+      <div class="codigo-barras" role="img" aria-label="Código de barras ilustrativo, sem validade para pagamento"></div>
+      <p class="linha-boleto">CÓDIGO DE TESTE — NÃO PAGÁVEL</p>
+      <p class="vencimento-boleto"><span>Vencimento ilustrativo</span><strong id="vencimentoBoleto"></strong></p>
+      <p class="valor-pix"><span>Valor</span><strong id="valorBoleto"></strong></p>
+      <button id="confirmarBoleto" class="botao" type="button">Simular pagamento e finalizar</button>
+      <p id="mensagemBoleto" class="mensagem" role="status" aria-live="polite"></p>
+    </section>
+  </main>
+  <script src="pagamento.js"></script>
+</body>
+</html>

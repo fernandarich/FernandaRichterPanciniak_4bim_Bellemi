@@ -1,0 +1,17 @@
+oi fer
+
+tem que colocar o botão pra entrega e pra calcular o frete tá
+
+colocar também pra pessoa ver os pedidos dela viu - check
+
+tem que colocar todas as imagens, me mata
+
+precisa do esqueci minha senha
+
+precisa da parte de verificar os dados e se ele quiser mudar pode, mas tem que verificar a senha
+
+precisa da parte da devolução?provavelmente
+precisa pedir dados do cartão?sim
+até onde precisa ir no pagamento?criar um botão pra confirmar o pagamento ou coisas um qrcode com tempo e deixar o status "em andamento"
+você acha legal ter opção de entregar?não precisa
+ai eu tenho que pedir os dados da pessoa pra entrega?não precisa

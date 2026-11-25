@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boleto | Bellemi</title>
+  <link rel="stylesheet" href="../Menu/menu.css">
+  <link rel="stylesheet" href="pagamento-etapas.css">
+</head>
+<body>
+  <main class="etapa">
+    <a class="logo" href="../Menu/menu.html">Bellemi<small>&#10047;</small></a>
+    <section class="cartao-etapa">
+      <h1>Boleto de demonstração</h1>
+      <p class="subtitulo">Este boleto é fictício e não pode ser pago.</p>
+      <div class="codigo-barras"></div>
+      <p class="aviso-etapa">Código ilustrativo — não pagável.</p>
+      <p class="valor-etapa"><span>Valor</span><strong id="valorBoleto"></strong></p>
+      <p class="vencimento">Vencimento: <strong id="vencimentoBoleto"></strong></p>
+      <button id="confirmar" class="botao botao-etapa" type="button">Simular pagamento</button>
+      <p id="mensagem" class="mensagem-etapa" role="status"></p>
+      <a class="voltar-etapa" href="pagamento.html">Voltar ao pagamento</a>
+    </section>
+  </main>
+  <script src="pagamento-etapas.js"></script>
+</body>
+</html>

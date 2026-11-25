@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Acessórios | Bellemi</title>
+  <meta name="description" content="Acessórios de beleza para completar sua rotina com carinho na Bellemi.">
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../Menu/menu.css">
+  <link rel="stylesheet" href="acessorios.css">
+</head>
+
+<body data-categoria="Acessorios" data-titulo="Acessórios">
+
+  <button class="menu-botao" id="menuBotao" aria-expanded="false" aria-controls="menu">Menu</button>
+
+  <div class="topo-direita">
+    <button class="topo-btn" id="btnConta" type="button" aria-label="Entrar">
+      <span aria-hidden="true">&#128100;</span><span class="rotulo">Entrar</span>
+    </button>
+    <button class="topo-btn carrinho-btn" id="btnCarrinho" aria-expanded="false" aria-controls="carrinho">
+      <span aria-hidden="true">&#128722;</span><span class="rotulo">Carrinho</span><span class="contador" id="contador"
+        hidden>0</span>
+    </button>
+  </div>
+
+  <nav class="menu" id="menu" aria-label="Categorias">
+    <a class="logo" href="/Frontend/Cliente/Menu/menu.html">Bellemi<small>&#10047;</small></a>
+    <p class="lema">beleza com carinho</p>
+    <ul>
+             <li><a class="item" href="/Frontend/Cliente/Menu/menu.html" aria-current="page">Início</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Maquiagem/maquiagem.html">Maquiagem</a></li>
+      <li><a class="item" href="/Frontend/Cliente/SkinCare/skincare.html">Skincare</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Cabelos/cabelos.html">Cabelos</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Perfumes/perfumes.html">Perfumes</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Acessorios/acessorios.html">Acessórios</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Esmaltes/esmaltes.html">Esmaltes</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Pinceis/pinceis.html">Pinceis</a></li>
+      <li><a class="item" href="/Frontend/Cliente/MaquiagemArtistica/maquiagemartistica.html">Maquiagem Artística</a></li>
+      <li><a class="item" href="/Frontend/Cliente/CorpoEBanho/corpoebanho.html">Corpo e Banho</a></li>
+      <li><a class="item" href="/Frontend/Cliente/KitsEPresentes/kitspresentes.html">Kits e Presentes</a></li>
+      <li><a class="item" href="/Frontend/Cliente/MaquiagemVegana/maquiagemvegana.html">Maquiagem Vegana</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="conteudo">
+      <h1 class="produtos-titulo" id="tituloProdutos">Acessórios</h1>
+      <p class="produtos-sub">Encontre seus acessórios favoritos ou ordene pelo preço.</p>
+
+      <form class="busca" role="search">
+        <span aria-hidden="true">&#128269;</span>
+        <input id="campoBusca" type="search" placeholder="Buscar em acessórios..." aria-label="Buscar produtos"
+          autocomplete="off" maxlength="80">
+        <button type="button" class="limpar" id="limparBusca" aria-label="Limpar busca" hidden>&times;</button>
+      </form>
+
+      <div class="barra-resultado">
+        <p class="contagem" id="contagem" aria-live="polite"></p>
+        <label class="ordenar">Ordenar por
+          <select id="ordenar">
+            <option value="nome">Nome (A-Z)</option>
+            <option value="menor_preco">Menor preço</option>
+            <option value="maior_preco">Maior preço</option>
+          </select>
+        </label>
+      </div>
+
+      <section id="destaques" aria-label="Lista de acessórios">
+        <div class="grade" id="grade" aria-busy="true"></div>
+      </section>
+    </div>
+  </main>
+
+  <footer id="contato">
+    <div class="rodape-grade">
+      <div>
+        <h2>Fale com a gente</h2>
+        <p><a class="zap" data-msg="Oi! Vim pelo site da Bellemi." href="#">WhatsApp</a></p>
+        <p><a href="mailto:contato@bellemi.com.br">contato@bellemi.com.br</a></p>
+      </div>
+      <div>
+        <h2>Redes sociais</h2>
+        <p><a href="https://instagram.com/bellemi" target="_blank" rel="noopener">Instagram @bellemi</a></p>
+      </div>
+      <div>
+        <h2>Atendimento</h2>
+        <p>Segunda a sábado, das 9h às 18h.</p>
+        <p>Pagamento por Pix ou cartão.</p>
+      </div>
+    </div>
+    <p class="direitos">&copy; 2026 Bellemi. Todos os direitos reservados.</p>
+  </footer>
+
+  <div class="fundo-carrinho" id="fundoCarrinho"></div>
+  <aside class="carrinho" id="carrinho" aria-label="Carrinho de compras" aria-hidden="true" inert>
+    <div class="carrinho-topo">
+      <h2>Seu carrinho</h2>
+      <button class="fechar" id="fecharCarrinho" aria-label="Fechar carrinho">&times;</button>
+    </div>
+    <ul class="carrinho-lista" id="carrinhoLista"></ul>
+    <div class="carrinho-rodape">
+      <div class="total"><span>Total</span><strong id="carrinhoTotal">R$ 0,00</strong></div>
+      <button id="finalizar" type="button" class="botao">
+      Finalizar compra
+      <div class="star-2">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-3">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-4">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-5">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-6">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </aside>
+  <div class="aviso-add" id="avisoAdd" role="status" aria-live="polite"></div>
+  <script src="../Menu/menu.js"></script>
+  <script src="acessorios.js"></script>
+</body>
+
+</html>

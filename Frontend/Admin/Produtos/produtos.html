@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Produtos</title>
+    <link rel="stylesheet" href="produtos.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div>
+            <a class="voltar-painel" href="../Menu/menu.html">← Painel administrativo</a>
+            <h1>Cadastro de Produtos</h1>
+            <p>Gerencie os produtos cadastrados na loja.</p>
+        </div>
+    </header>
+
+    <main class="container-master">
+        <div class="conteudo-principal">
+            <section class="form-esquerda">
+                <h2>Dados do Produto</h2>
+
+                <label for="inputId_produto">ID do Produto</label>
+                <div class="linha-id">
+                    <input type="number" name="inputId_produto" id="inputId_produto" min="1" step="1" placeholder="Digite para buscar" readonly>
+                    <button type="button" id="btProcure">Buscar</button>
+                    <button type="button" id="btNovo">Novo produto</button>
+                    <button type="button" id="btAlterar" hidden>Alterar</button>
+                    <button type="button" id="btExcluir" hidden>Excluir</button>
+                </div>
+                <small class="ajuda-id">O código é gerado automaticamente ao cadastrar.</small>
+
+                <label for="inputNome_produto">Nome do Produto (com a cor)</label>
+                <input type="text" name="inputNome_produto" id="inputNome_produto" maxlength="30" required placeholder="Ex: Batom Cremoso Rose" readonly>
+                <label for="inputDescricao_produto">Descrição</label>
+                <textarea name="inputDescricao_produto" id="inputDescricao_produto" maxlength="100" rows="3" placeholder="Descreva o produto" readonly></textarea>
+                <label for="inputpreco_produto">Preço (R$)</label>
+                <input type="number" name="inputpreco_produto" id="inputpreco_produto" placeholder="Ex: 19.99" min="0.01" max="99999999.99" step="0.01" required readonly>
+                <label for="inputEstoque_produto">Estoque</label>
+                <input type="number" name="inputEstoque_produto" id="inputEstoque_produto" placeholder="Ex: 50" min="0" max="2147483647" step="1" required readonly>
+                <label for="selectCategoria_produto">Selecione a categoria do produto</label>
+                <select name="selectCategoria_produto" id="selectCategoria_produto" disabled>
+                    <option value="">Carregando...</option>
+                </select>
+
+                <div id="divAviso" role="status" aria-live="polite">Carregando produtos...</div>
+
+                <div class="botoes-acao">
+                    <button type="button" id="btSalvar" hidden>Salvar</button>
+                    <button type="button" id="btCancelar" hidden>Cancelar</button>
+                </div>
+            </section>
+
+            <aside class="form-direita">
+                <h2>Imagem do Produto</h2>
+                <p class="instrucao-imagem">Opcional · JPG, PNG, WebP, GIF ou AVIF · até 5 MB</p>
+                <div class="img-container">
+                    <img id="imgProduto" src="../../img/silhueta.png" alt="Prévia da imagem do produto">
+                    <button type="button" id="btEscolherImagem" hidden>Escolher imagem</button>
+                    <input type="file" id="inputImagem" accept="image/jpeg,image/png,image/webp,image/gif,image/avif" hidden>
+                </div>
+            </aside>
+        </div>
+
+        <section class="lista-unidades">
+            <div class="titulo-lista">
+                <div>
+                    <h3>Produtos Cadastrados</h3>
+                    <p>Selecione um produto para consultar ou editar.</p>
+                </div>
+                <button type="button" id="btAtualizarLista">Atualizar lista</button>
+            </div>
+            <div id="outputSaida" class="lista-produtos">Carregando...</div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sistema CRUD Produtos Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="./produtos.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+/* ---------- Cabeçalho da Categoria ---------- */
+.produtos-titulo {
+  margin-bottom: 0.4rem;
+}
+
+.produtos-sub {
+  font-size: 1.12rem;
+  color: var(--suave);
+  margin-bottom: 2.25rem;
+}
+
+/* ---------- Barra de Busca ---------- */
+.busca {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 540px;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(210, 106, 143, 0.28);
+  border-radius: 999px;
+  box-shadow: var(--sombra-suave);
+  margin-bottom: 1.75rem;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.busca:focus-within {
+  border-color: var(--amora);
+  box-shadow: 0 8px 24px -6px rgba(168, 50, 94, 0.25);
+}
+
+.busca span[aria-hidden="true"] {
+  font-size: 1.05rem;
+  opacity: 0.75;
+}
+
+.busca input {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  font-family: var(--corpo);
+  font-size: 1rem;
+  color: var(--tinta);
+  outline: none;
+}
+
+.busca input::placeholder {
+  color: var(--suave);
+}
+
+/* Remove o "X" padrão do navegador no input search */
+.busca input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.busca .limpar {
+  display: grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 0;
+  border-radius: 50%;
+  background: var(--rosa-claro);
+  color: var(--amora);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.busca .limpar[hidden] {
+  display: none;
+}
+
+.busca .limpar:hover {
+  background: var(--gradiente-ameixa);
+  color: #fff;
+}
+
+/* ---------- Barra de Contagem e Ordenação ---------- */
+.barra-resultado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.25rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(210, 106, 143, 0.22);
+}
+
+.contagem {
+  font-size: 0.95rem;
+  color: var(--suave);
+}
+
+.ordenar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.92rem;
+  color: var(--suave);
+}
+
+.ordenar select {
+  padding: 0.5rem 2.2rem 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(210, 106, 143, 0.28);
+  background-color: rgba(255, 255, 255, 0.92);
+  color: var(--ameixa);
+  font-family: var(--corpo);
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: var(--sombra-suave);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233A1F30' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+}
+
+.ordenar select:hover {
+  border-color: var(--amora);
+  background-color: var(--rosa-claro);
+}
+
+/* ---------- Grade de Produtos ---------- */
+.grade {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.75rem;
+}
+
+/* ---------- Card Individual do Produto (gerado pelo acessorios.js) ---------- */
+.grade article,
+.grade figure,
+.grade .card,
+.grade .item-produto {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(252, 232, 238, 0.65));
+  border: 1px solid rgba(210, 106, 143, 0.22);
+  border-radius: var(--raio-g);
+  padding: 1.15rem;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  overflow: hidden;
+}
+
+.grade article:hover,
+.grade figure:hover,
+.grade .card:hover,
+.grade .item-produto:hover {
+  transform: translateY(-5px);
+  border-color: var(--amora-clara);
+  box-shadow: 0 16px 36px -12px rgba(58, 31, 48, 0.24);
+}
+
+/* Imagem do produto */
+.grade img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--raio-m);
+  background: linear-gradient(135deg, var(--rosa-claro), var(--dourado-suave));
+  margin-bottom: 1rem;
+  transition: transform 0.45s ease;
+}
+
+.grade article:hover img,
+.grade figure:hover img,
+.grade .card:hover img,
+.grade .item-produto:hover img {
+  transform: scale(1.03);
+}
+
+/* Nome e Preço */
+.grade h3 {
+  font-family: var(--display);
+  font-size: 1.55rem;
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--ameixa);
+  margin-bottom: 0.35rem;
+}
+
+.grade p {
+  color: var(--amora);
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 1rem;
+}
+
+/* Botão de Adicionar ao Carrinho dentro da Grade */
+.grade .botao,
+.grade button {
+  width: 100%;
+  margin-top: auto;
+  padding: 0.75rem 1.2rem;
+  font-family: var(--corpo);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ameixa-profunda);
+  background: linear-gradient(135deg, var(--rosa-claro) 0%, var(--rosa-medio) 100%);
+  border: 1px solid rgba(194, 42, 98, 0.25);
+  border-radius: var(--raio-p);
+  box-shadow: 0 4px 15px -4px rgba(168, 50, 94, 0.2);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.grade .botao:hover,
+.grade button:hover {
+  background: var(--gradiente-ameixa);
+  color: #ffffff;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -6px rgba(168, 50, 94, 0.4);
+}
+
+/* Mensagem caso a busca não encontre nada */
+.vazio,
+.sem-resultados {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px dashed rgba(210, 106, 143, 0.4);
+  border-radius: var(--raio-g);
+  color: var(--suave);
+  font-size: 1.08rem;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 600px) {
+  .grade {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .grade article,
+  .grade figure,
+  .grade .card,
+  .grade .item-produto {
+    padding: 0.85rem;
+  }
+
+  .grade h3 {
+    font-size: 1.3rem;
+  }
+}

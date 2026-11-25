@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagamento com cartão | Bellemi</title>
+  <link rel="stylesheet" href="../Menu/menu.css">
+  <link rel="stylesheet" href="pagamento-etapas.css">
+</head>
+<body>
+  <main class="etapa">
+    <a class="logo" href="../Menu/menu.html">Bellemi<small>&#10047;</small></a>
+    <section class="cartao-etapa">
+      <h1 id="tituloCartao">Pagamento com cartão</h1>
+      <p class="subtitulo">Ambiente de demonstração.</p>
+      <div id="cartaoSalvo" class="cartao-salvo" hidden></div>
+      <form id="formCartao" class="form-cartao" hidden>
+        <label>Nome impresso no cartão
+          <input id="nomeTitular" maxlength="100" autocomplete="cc-name" required>
+        </label>
+        <label>Últimos 4 dígitos
+          <input id="ultimosDigitos" inputmode="numeric" pattern="[0-9]{4}" maxlength="4" required>
+        </label>
+        <label>Bandeira
+          <select id="bandeira" required>
+            <option value="">Selecione</option>
+            <option>Visa</option><option>Mastercard</option><option>Elo</option>
+            <option>American Express</option><option>Hipercard</option>
+          </select>
+        </label>
+        <div class="validade-cartao">
+          <label>Mês
+            <select id="mes" required>
+              <option value="">Mês</option>
+              <option value="1">01</option><option value="2">02</option><option value="3">03</option>
+              <option value="4">04</option><option value="5">05</option><option value="6">06</option>
+              <option value="7">07</option><option value="8">08</option><option value="9">09</option>
+              <option value="10">10</option><option value="11">11</option><option value="12">12</option>
+            </select>
+          </label>
+          <label>Ano
+            <input id="ano" type="number" required>
+          </label>
+        </div>
+      </form>
+      <p class="valor-etapa"><span>Valor</span><strong id="valorCartao"></strong></p>
+      <button id="confirmar" class="botao botao-etapa" type="button">Confirmar pagamento</button>
+      <p id="mensagem" class="mensagem-etapa" role="status"></p>
+      <a class="voltar-etapa" href="pagamento.html">Voltar ao pagamento</a>
+    </section>
+  </main>
+  <script src="pagamento-etapas.js"></script>
+</body>
+</html>

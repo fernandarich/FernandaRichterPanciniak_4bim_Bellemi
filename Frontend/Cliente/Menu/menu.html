@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bellemi | Maquiagem, skincare e cuidados para você</title>
+<meta name="description" content="Bellemi: maquiagem, skincare, cabelos, perfumes e acessórios escolhidos com carinho para o seu dia a dia.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%B8%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+<button class="menu-botao" id="menuBotao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">Menu</button>
+
+<div class="topo-direita">
+  <button class="topo-btn" id="btnConta" type="button" aria-label="Entrar">
+    <span aria-hidden="true">&#128100;</span><span class="rotulo">Entrar</span>
+  </button>
+  <button class="topo-btn carrinho-btn" id="btnCarrinho" aria-expanded="false" aria-controls="carrinho">
+    <span aria-hidden="true">&#128722;</span><span class="rotulo">Carrinho</span><span class="contador" id="contador" hidden>0</span>
+  </button>
+</div>
+
+<nav class="menu" id="menu" aria-label="Categorias">
+  <button class="menu-fechar" id="menuFechar" type="button" aria-label="Fechar menu">&times;</button>
+  <a class="logo" href="menu.html">Bellemi<small>&#10047;</small></a>
+  <p class="lema">beleza com carinho</p>
+  <ul>
+      <li><a class="item" href="/Frontend/Cliente/Menu/menu.html" aria-current="page">Início</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Maquiagem/maquiagem.html">Maquiagem</a></li>
+      <li><a class="item" href="/Frontend/Cliente/SkinCare/skincare.html">Skincare</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Cabelos/cabelos.html">Cabelos</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Perfumes/perfumes.html">Perfumes</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Acessorios/acessorios.html">Acessórios</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Esmaltes/esmaltes.html">Esmaltes</a></li>
+      <li><a class="item" href="/Frontend/Cliente/Pinceis/pinceis.html">Pinceis</a></li>
+      <li><a class="item" href="/Frontend/Cliente/MaquiagemArtistica/maquiagemartistica.html">Maquiagem Artística</a></li>
+      <li><a class="item" href="/Frontend/Cliente/CorpoEBanho/corpoebanho.html">Corpo e Banho</a></li>
+      <li><a class="item" href="/Frontend/Cliente/KitsEPresentes/kitspresentes.html">Kits e Presentes</a></li>
+      <li><a class="item" href="/Frontend/Cliente/MaquiagemVegana/maquiagemvegana.html">Maquiagem Vegana</a></li>
+  </ul>
+  <div class="menu-rodape">
+    <a class="botao zap" data-msg="Oi! Vim pelo site da Bellemi." href="#">Falar no WhatsApp</a>
+    <a class="insta" href="https://www.instagram.com/richter.feh" target="_blank" rel="noopener">@bellemi</a>
+  </div>
+</nav>
+
+<main>
+<div class="conteudo">
+  <p class="aviso">&#10084; Frete grátis acima de R$ 150</p>
+  <h1>Bem-Vinda à Bellemi!</h1>
+  <p class="intro">Maquiagem, skincare e muito carinho para o seu dia a dia. Dá uma olhadinha nos nossos produtos.</p>
+  <div class="acoes">
+    <a class="botao" href="#destaques">Ver produtos</a>
+    <a class="botao suave zap" data-msg="Oi! Vim pelo site da Bellemi e queria tirar uma dúvida." href="#">Falar no WhatsApp</a>
+  </div>
+
+  <section id="destaques" aria-labelledby="t-destaques">
+    <h2 class="titulo-secao" id="t-destaques">Queridinhos da Bellemi</h2>
+    <div class="carrossel" aria-roledescription="carrossel" aria-label="Produtos em destaque">
+      <div class="palco" id="palco">
+        <figure class="slide">
+          <img src="/Frontend/img/batocremosorose.jpg" alt="Batom cremoso rosé" onerror="this.remove()">
+          <div class="produto">
+            <div><h3>Batom Cremoso Rosé</h3><p>R$ 29,90</p></div>
+            <button class="botao" data-add data-id="produto1" data-nome="Batom Cremoso Rosé" data-preco="29.90">Adicionar ao carrinho</button>
+          </div>
+        </figure>
+        <figure class="slide">
+          <img src="/Frontend/img/serumvitaminac.jpg" alt="Sérum facial de vitamina C" onerror="this.remove()">
+          <div class="produto">
+            <div><h3>Sérum Vitamina C</h3><p>R$ 59,90</p></div>
+            <button class="botao" data-add data-id="produto2" data-nome="Sérum Vitamina C" data-preco="59.90">Adicionar ao carrinho</button>
+          </div>
+        </figure>
+        <figure class="slide">
+          <img src="/Frontend/img/paletadesombra1.jpg" alt="Paleta de sombras" onerror="this.remove()">
+          <div class="produto">
+            <div><h3>Paleta de Sombras</h3><p>R$ 49,90</p></div>
+            <button class="botao" data-add data-id="produto3" data-nome="Paleta de Sombras" data-preco="49.90">Adicionar ao carrinho</button>
+          </div>
+        </figure>
+        <figure class="slide">
+          <img src="/Frontend/img/hidratantecorporal1.jpg" alt="Hidratante corporal" onerror="this.remove()">
+          <div class="produto">
+            <div><h3>Hidratante Corporal</h3><p>R$ 39,90</p></div>
+            <button class="botao" data-add data-id="produto4" data-nome="Hidratante Corporal" data-preco="39.90">Adicionar ao carrinho</button>
+          </div>
+        </figure>
+      </div>
+      <button class="seta anterior" id="anterior" aria-label="Produto anterior">&#8249;</button>
+      <button class="seta proximo" id="proximo" aria-label="Próximo produto">&#8250;</button>
+      <div class="pontos" id="pontos"></div>
+    </div>
+  </section>
+
+  <section class="sobre" id="sobre">
+    <h2>Sobre a Bellemi</h2>
+    <p>A Bellemi nasceu para reunir em um só lugar tudo o que faz você se sentir bem na sua própria pele. Aqui você encontra maquiagem, skincare e outros cuidados escolhidos com carinho.</p>
+    <p>Nossa ideia é simples: produtos bonitos, de qualidade e que cabem na sua rotina.</p>
+  </section>
+</div>
+</main>
+
+<footer id="contato">
+  <div class="rodape-grade">
+    <div>
+      <h2>Fale com a gente</h2>
+      <p><a class="zap" data-msg="Oi! Vim pelo site da Bellemi." href="#">WhatsApp</a></p>
+      <p><a href="mailto:contato@bellemi.com.br">contato@bellemi.com.br</a></p>
+    </div>
+    <div>
+      <h2>Redes sociais</h2>
+      <p><a href="https://www.instagram.com/richter.feh" target="_blank" rel="noopener">Instagram @bellemi</a></p>
+    </div>
+    <div>
+      <h2>Atendimento</h2>
+      <p>Segunda a sábado, das 9h às 18h.</p>
+      <p>Pagamento por Pix ou cartão.</p>
+    </div>
+  </div>
+  <p class="direitos">&copy; 2026 Bellemi. Todos os direitos reservados.</p>
+</footer>
+
+<div class="fundo-carrinho" id="fundoCarrinho"></div>
+<aside class="carrinho" id="carrinho" aria-label="Carrinho de compras" aria-hidden="true" inert>
+  <div class="carrinho-topo">
+    <h2>Seu carrinho</h2>
+    <button class="fechar" id="fecharCarrinho" aria-label="Fechar carrinho">&times;</button>
+  </div>
+  <ul class="carrinho-lista" id="carrinhoLista"></ul>
+  <div class="carrinho-rodape">
+    <div class="total"><span>Total</span><strong id="carrinhoTotal">R$ 0,00</strong></div>
+    
+    <!-- Botão de finalizar compra atualizado com as estrelas -->
+    <button id="finalizar" type="button" class="botao">
+      Finalizar compra
+      <div class="star-2">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-3">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-4">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-5">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+      <div class="star-6">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 784.11 815.53" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g id="Layer_x0020_1">
+            <path class="fil0" d="M392.05 0c-20.9,210.08 -184.06,378.41 -392.05,407.78 207.96,29.37 371.12,197.68 392.05,407.74 20.93,-210.06 184.09,-378.37 392.05,-407.74 -207.98,-29.38 -371.16,-197.69 -392.06,-407.78z"></path>
+          </g>
+        </svg>
+      </div>
+    </button>
+  </div>
+</aside>
+<div class="aviso-add" id="avisoAdd" role="status" aria-live="polite"></div>
+
+<script src="menu.js"></script>
+</body>
+</html>

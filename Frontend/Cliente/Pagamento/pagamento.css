@@ -1,0 +1,352 @@
+body {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(247, 174, 196, .72) 0, rgba(247, 174, 196, .42) 10%, transparent 30%),
+    radial-gradient(circle at 88% 16%, rgba(182, 207, 176, .72) 0, rgba(182, 207, 176, .42) 10%, transparent 31%),
+    radial-gradient(circle at 18% 82%, rgba(242, 177, 199, .64) 0, rgba(242, 177, 199, .36) 10%, transparent 32%),
+    radial-gradient(circle at 82% 84%, rgba(168, 210, 174, .68) 0, rgba(168, 210, 174, .38) 10%, transparent 34%),
+    linear-gradient(145deg, #fdf7f8 0%, #f7f2ec 48%, #edf3e9 100%);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: none;
+}
+
+.pagamento {
+  width: min(100% - 2rem, 920px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.pagamento > .logo,
+#telaCheckout > .logo {
+  position: static;
+  display: flex;
+  width: fit-content;
+  height: auto;
+  margin: 0 auto .35rem;
+  padding: 0;
+  text-align: center;
+}
+
+.pagamento > .logo::before,
+#telaCheckout > .logo::before {
+  content: none;
+}
+
+#telaCheckout {
+  display: grid;
+  grid-template-columns: minmax(280px, .78fr) minmax(380px, 1.22fr);
+  column-gap: 1.25rem;
+  align-items: start;
+}
+
+#telaCheckout > .logo,
+#telaCheckout > h1,
+#telaCheckout > .introducao {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+#telaCheckout > h1 {
+  margin: 0 0 .1rem;
+  color: var(--ameixa);
+  font: 600 2.75rem/1.05 var(--display);
+}
+
+.introducao {
+  margin: .15rem 0 1rem;
+  color: var(--suave);
+  font-size: .92rem;
+}
+
+.painel {
+  width: 100%;
+  padding: 1.35rem 1.5rem;
+  margin: 0;
+  border: 1px solid rgba(176, 58, 102, .14);
+  border-radius: 1.1rem;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 14px 36px rgba(58, 31, 48, .1);
+}
+
+.painel h2,
+.painel legend {
+  margin-bottom: .55rem;
+  color: var(--ameixa);
+  font: 600 1.45rem var(--display);
+}
+
+.itens-pedido {
+  display: grid;
+  gap: .55rem;
+  padding: 0;
+  list-style: none;
+}
+
+.item-pedido {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: .9rem;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .85rem;
+  padding-top: .85rem;
+  border-top: 1px solid rgba(176, 58, 102, .18);
+}
+
+.total strong {
+  color: var(--amora);
+}
+
+fieldset {
+  display: grid;
+  gap: .55rem;
+  padding: 0;
+  border: 0;
+}
+
+.estado-entrega {
+  display: grid;
+  gap: .35rem;
+  margin-bottom: .55rem;
+  color: var(--ameixa);
+  font-weight: 500;
+  font-size: .9rem;
+}
+
+.estado-entrega select,
+.form-cartao input,
+.form-cartao select {
+  width: 100%;
+  min-width: 0;
+  min-height: 2.55rem;
+  padding: .55rem .75rem;
+  border: 1px solid rgba(176, 58, 102, .28);
+  border-radius: .65rem;
+  color: var(--tinta);
+  background: #fff;
+  font: inherit;
+}
+
+.opcao {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  cursor: pointer;
+  font-size: .9rem;
+}
+
+.opcao input {
+  accent-color: var(--amora);
+}
+
+.aviso-pagamento,
+.aviso-pix,
+.aviso-cartao,
+.aviso-boleto {
+  margin: .75rem 0;
+  padding: .55rem .7rem;
+  border-radius: .65rem;
+  background: var(--rosa-claro);
+  font-size: .78rem;
+  text-align: center;
+}
+
+#formPagamento > .botao,
+#continuarPagamento {
+  width: 100%;
+  min-height: 2.75rem;
+  margin-top: .65rem;
+}
+
+.voltar {
+  display: block;
+  width: fit-content;
+  margin: .7rem auto 0;
+  color: var(--amora);
+  font-weight: 500;
+  text-align: center;
+}
+
+.mensagem {
+  margin-top: .55rem;
+  color: var(--ameixa);
+  text-align: center;
+  font-size: .88rem;
+}
+
+.tela-pix,
+.tela-cartao,
+.tela-boleto {
+  width: min(100%, 520px);
+  margin: 0 auto;
+  border: 1px solid rgba(176, 58, 102, .14);
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 14px 36px rgba(58, 31, 48, .1);
+}
+
+.tela-pix {
+  display: grid;
+  justify-items: center;
+  gap: .75rem;
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.tela-pix[hidden],
+.tela-cartao[hidden],
+.tela-boleto[hidden] {
+  display: none;
+}
+
+.tela-pix h1,
+.tela-cartao h1,
+.tela-boleto h1 {
+  margin: 0;
+  color: var(--ameixa);
+  font: 600 2.5rem/1.05 var(--display);
+  text-align: center;
+}
+
+.qrcode-pix {
+  width: min(100%, 180px);
+  aspect-ratio: 1;
+  padding: .5rem;
+  border: 1px solid #e8dfe4;
+  border-radius: .5rem;
+  background: #fff;
+}
+
+.qrcode-pix svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.valor-pix {
+  display: grid;
+  gap: .15rem;
+  margin: 0;
+  text-align: center;
+}
+
+.valor-pix strong {
+  color: var(--amora);
+  font-size: 1.35rem;
+}
+
+.tela-cartao,
+.tela-boleto {
+  display: grid;
+  gap: .75rem;
+  padding: 1.25rem;
+  justify-items: stretch;
+}
+
+.cartao-salvo {
+  padding: .75rem;
+  border: 1px solid rgba(176, 58, 102, .28);
+  border-radius: .65rem;
+}
+
+.cartao-salvo[hidden],
+.form-cartao[hidden] {
+  display: none;
+}
+
+.form-cartao {
+  display: grid;
+  gap: .65rem;
+}
+
+.form-cartao label,
+.validade-cartao {
+  display: grid;
+  gap: .25rem;
+}
+
+.validade-cartao {
+  grid-template-columns: 1fr 1fr;
+  gap: .65rem;
+}
+
+.codigo-barras {
+  width: 100%;
+  max-width: 360px;
+  height: 4.5rem;
+  margin-inline: auto;
+  border: 1px solid #e8dfe4;
+  background:
+    repeating-linear-gradient(90deg, #24151e 0 2px, transparent 2px 4px, #24151e 4px 5px, transparent 5px 8px, #24151e 8px 11px, transparent 11px 13px),
+    #fff;
+}
+
+.linha-boleto,
+.vencimento-boleto {
+  text-align: center;
+}
+
+.linha-boleto {
+  color: var(--ameixa);
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+}
+
+.vencimento-boleto {
+  display: grid;
+  gap: .15rem;
+}
+
+.vencimento-boleto strong {
+  color: var(--ameixa);
+}
+
+#tentarCarregarFormas[hidden],
+#tentarCarregarFretes[hidden] {
+  display: none;
+}
+
+.vazio {
+  padding: .5rem 0;
+  color: var(--suave);
+}
+
+@media (max-width: 760px) {
+  #telaCheckout {
+    grid-template-columns: 1fr;
+  }
+
+  #telaCheckout > .logo,
+  #telaCheckout > h1,
+  #telaCheckout > .introducao,
+  #telaCheckout > .painel {
+    grid-column: 1;
+  }
+
+  #telaCheckout > .painel + .painel {
+    margin-top: 1rem;
+  }
+
+  .pagamento {
+    width: min(100% - 1.25rem, 520px);
+  }
+
+  #telaCheckout > h1 {
+    font-size: 2.35rem;
+  }
+
+  .painel {
+    padding: 1.1rem;
+  }
+}

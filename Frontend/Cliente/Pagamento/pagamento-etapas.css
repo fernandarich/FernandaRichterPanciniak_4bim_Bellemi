@@ -1,0 +1,255 @@
+body {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(247, 174, 196, .72) 0, rgba(247, 174, 196, .42) 10%, transparent 30%),
+    radial-gradient(circle at 88% 16%, rgba(182, 207, 176, .72) 0, rgba(182, 207, 176, .42) 10%, transparent 31%),
+    radial-gradient(circle at 18% 82%, rgba(242, 177, 199, .64) 0, rgba(242, 177, 199, .36) 10%, transparent 32%),
+    radial-gradient(circle at 82% 84%, rgba(168, 210, 174, .68) 0, rgba(168, 210, 174, .38) 10%, transparent 34%),
+    linear-gradient(145deg, #fdf7f8 0%, #f7f2ec 48%, #edf3e9 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before { content: none; }
+
+.etapa {
+  width: min(100% - 2rem, 760px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: .35rem 0 1.5rem !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.etapa > .logo {
+  position: static;
+  width: fit-content;
+  height: auto;
+  margin-bottom: 1rem;
+  padding: 0;
+  text-align: center;
+  align-self: center;
+}
+
+.etapa > .logo::before { content: none; }
+
+.cartao-etapa {
+  width: 100%;
+  max-width: 520px;
+  padding: 2rem;
+  border: 1px solid rgba(176, 58, 102, .14);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 18px 50px rgba(58, 31, 48, .12);
+  text-align: center;
+}
+
+.cartao-etapa h1 {
+  margin-bottom: .25rem;
+  color: var(--ameixa);
+  font: 600 2.8rem/1.05 var(--display);
+}
+
+.subtitulo {
+  margin-bottom: 1.25rem;
+  color: var(--suave);
+}
+
+.qrcode-pix {
+  width: 220px;
+  margin: 1rem auto;
+  aspect-ratio: 1;
+  padding: .5rem;
+  border: 1px solid #e8dfe4;
+  border-radius: .75rem;
+  background: #fff;
+}
+
+.qrcode-pix img { width: 100%; height: 100%; }
+
+.pix-copia-cola {
+  display: block;
+  width: 100%;
+  min-height: 5rem;
+  margin: .75rem 0;
+  padding: .65rem;
+  border: 1px solid #e8dfe4;
+  border-radius: .65rem;
+  background: #fff;
+  color: var(--ameixa);
+  font: .78rem/1.4 monospace;
+  overflow-wrap: anywhere;
+  resize: vertical;
+}
+
+.valor-etapa {
+  display: grid;
+  gap: .15rem;
+  margin: 1rem 0;
+}
+
+.valor-etapa strong {
+  color: var(--amora);
+  font-size: 1.5rem;
+}
+
+.aviso-etapa,
+.cartao-salvo {
+  margin: 1rem 0;
+  padding: .75rem;
+  border-radius: .75rem;
+  background: var(--rosa-claro);
+  font-size: .88rem;
+}
+
+.cartao-salvo { text-align: left; }
+
+.form-cartao {
+  display: grid;
+  gap: .75rem;
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.form-cartao label,
+.validade-cartao {
+  display: grid;
+  gap: .25rem;
+  color: var(--ameixa);
+  font-weight: 500;
+}
+
+.validade-cartao {
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem;
+}
+
+.form-cartao input,
+.form-cartao select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: .65rem .85rem;
+  border: 1px solid rgba(176, 58, 102, .28);
+  border-radius: .65rem;
+  background: #fff;
+  font: inherit;
+}
+
+.botao-etapa {
+  width: 100%;
+  min-height: 3rem;
+  margin-top: .9rem;
+}
+
+.voltar-etapa {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--amora);
+  font-weight: 500;
+}
+
+.mensagem-etapa {
+  min-height: 1.25rem;
+  margin-top: .75rem;
+  color: var(--ameixa);
+}
+
+.codigo-barras {
+  width: 100%;
+  max-width: 360px;
+  height: 5.5rem;
+  margin: 1.25rem auto;
+  border: 1px solid #e8dfe4;
+  background: repeating-linear-gradient(90deg, #24151e 0 2px, transparent 2px 4px, #24151e 4px 5px, transparent 5px 8px, #24151e 8px 11px, transparent 11px 13px), #fff;
+}
+
+.pagamento-pix .etapa {
+  justify-content: flex-start;
+  padding-top: .35rem;
+}
+
+.pagamento-pix .etapa > .logo {
+  margin-bottom: .25rem;
+}
+
+.pagamento-pix .cartao-etapa {
+  max-width: 520px;
+  display: block;
+  padding: 1.5rem 1.75rem;
+  text-align: center;
+}
+
+.pagamento-pix .cartao-etapa h1,
+.pagamento-pix .subtitulo {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+.pagamento-pix .cartao-etapa h1 {
+  font-size: 2.4rem;
+  margin-bottom: .1rem;
+}
+
+.pagamento-pix .subtitulo {
+  margin-bottom: .45rem;
+}
+
+.pagamento-pix .qrcode-pix {
+  width: 220px;
+  margin: .25rem auto .75rem;
+}
+
+.pagamento-pix .aviso-etapa,
+.pagamento-pix .valor-etapa,
+.pagamento-pix .botao-etapa,
+.pagamento-pix .mensagem-etapa,
+.pagamento-pix .voltar-etapa {
+  display: block;
+}
+
+.pagamento-pix .aviso-etapa {
+  margin: 0 auto .75rem;
+}
+
+.pagamento-pix .valor-etapa {
+  margin: .35rem 0;
+  text-align: center;
+}
+
+.pagamento-pix .botao-etapa {
+  margin-top: .65rem;
+}
+
+.pagamento-pix .mensagem-etapa {
+  margin-top: .55rem;
+  text-align: center;
+}
+
+.pagamento-pix .voltar-etapa {
+  margin: .35rem auto 0;
+  text-align: center;
+}
+
+[hidden] { display: none !important; }
+
+@media (max-width: 560px) {
+  .etapa { width: min(100% - 1.25rem, 760px); }
+  .cartao-etapa { padding: 1.35rem 1.15rem; border-radius: 1.1rem; }
+  .cartao-etapa h1 { font-size: 2.35rem; }
+  .validade-cartao { grid-template-columns: 1fr; }
+
+  .pagamento-pix .cartao-etapa {
+    display: block;
+    max-width: 520px;
+    text-align: center;
+  }
+
+  .pagamento-pix .qrcode-pix {
+    margin: .25rem auto .75rem;
+  }
+
+  .pagamento-pix .valor-etapa {
+    text-align: center;
+  }
+}

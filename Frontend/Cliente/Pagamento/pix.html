@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pagamento Pix | Bellemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../Menu/menu.css">
+  <link rel="stylesheet" href="pagamento-etapas.css">
+</head>
+<body class="pagamento-pix">
+  <main class="etapa">
+    <a class="logo" href="../Menu/menu.html">Bellemi<small>&#10047;</small></a>
+    <section class="cartao-etapa">
+      <h1>Pagamento via Pix</h1>
+      <p class="subtitulo">Escaneie com o app do seu banco ou use o Pix copia e cola.</p>
+      <div id="qrcodePix" class="qrcode-pix" role="img" aria-label="QR Code Pix"></div>
+      <textarea id="pixCopiaECola" class="pix-copia-cola" aria-label="Código Pix copia e cola" readonly hidden></textarea>
+      <button id="copiarPix" class="botao botao-etapa" type="button" hidden>Copiar código Pix</button>
+      <p class="valor-etapa"><span>Valor</span><strong id="valorPix"></strong></p>
+      <p class="aviso-etapa">O pedido ficará aguardando a confirmação do pagamento pela loja. A confirmação não é automática.</p>
+      <button id="confirmar" class="botao botao-etapa" type="button">Registrar pedido</button>
+      <p id="mensagem" class="mensagem-etapa" role="status"></p>
+      <a class="voltar-etapa" href="pagamento.html">Voltar ao pagamento</a>
+    </section>
+  </main>
+  <script src="pagamento-etapas.js"></script>
+</body>
+</html>

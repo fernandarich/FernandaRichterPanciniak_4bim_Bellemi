@@ -1,0 +1,220 @@
+/* ---------- Cabeçalho da Página ---------- */
+.conteudo.pedidos {
+  max-width: 900px;
+}
+
+.produtos-titulo {
+  margin-bottom: 0.4rem;
+}
+
+.produtos-sub {
+  font-size: 1.12rem;
+  color: var(--suave);
+  margin-bottom: 2.25rem;
+}
+
+/* ---------- Estado de Carregamento / Sem Pedidos ---------- */
+.estado-pedidos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 3.5rem 2rem;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.92), rgba(252, 232, 238, 0.65));
+  border: 1px dashed rgba(210, 106, 143, 0.4);
+  border-radius: var(--raio-g);
+  color: var(--suave);
+  font-size: 1.08rem;
+  box-shadow: var(--sombra-suave);
+}
+
+.estado-pedidos[hidden] {
+  display: none;
+}
+
+/* ---------- Lista de Pedidos ---------- */
+.lista-pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lista-pedidos[hidden] {
+  display: none;
+}
+
+/* ---------- Cartão Individual de Pedido (gerado pelo pedidos.js) ---------- */
+.lista-pedidos > article,
+.lista-pedidos > div,
+.pedido-card,
+.pedido {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(252, 232, 238, 0.55));
+  border: 1px solid rgba(210, 106, 143, 0.25);
+  border-radius: var(--raio-g);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--sombra-suave);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.lista-pedidos > article:hover,
+.lista-pedidos > div:hover,
+.pedido-card:hover,
+.pedido:hover {
+  transform: translateY(-3px);
+  border-color: var(--amora-clara);
+  box-shadow: var(--sombra-media);
+}
+
+/* Topo do Pedido (Número, Data e Status) */
+.pedido-topo,
+.pedido-cabecalho {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(210, 106, 143, 0.2);
+}
+
+.pedido-topo h2,
+.pedido-topo h3,
+.pedido-cabecalho h2,
+.pedido-cabecalho h3 {
+  font-family: var(--display);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--ameixa);
+  margin: 0;
+}
+
+.pedido-data {
+  font-size: 0.9rem;
+  color: var(--suave);
+}
+
+/* Pílula de Status */
+.status,
+.pedido-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: var(--rosa-claro);
+  color: var(--amora-escura);
+  border: 1px solid rgba(194, 42, 98, 0.25);
+}
+
+/* Variações de cor caso o pedidos.js adicione classes de status */
+.status.concluido,
+.status.entregue,
+.status.pago {
+  background: var(--sage-suave);
+  color: #2f4f2d;
+  border-color: rgba(169, 191, 166, 0.6);
+}
+
+.status.pendente,
+.status.processando {
+  background: var(--dourado-suave);
+  color: #6e4e15;
+  border-color: rgba(217, 162, 74, 0.5);
+}
+
+.status.cancelado {
+  background: #fde8e8;
+  color: #8b1e24;
+  border-color: rgba(139, 30, 36, 0.25);
+}
+
+/* Lista de Itens dentro do Pedido */
+.lista-pedidos ul,
+.pedido-itens {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.lista-pedidos li,
+.pedido-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 0.95rem;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(210, 106, 143, 0.16);
+  border-radius: var(--raio-p);
+  font-size: 0.96rem;
+  color: var(--tinta);
+}
+
+.lista-pedidos li span,
+.pedido-item span {
+  color: var(--suave);
+}
+
+.detalhes-pedido {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Rodapé do Pedido (Total) */
+.total-pedido {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pedido-rodape,
+.pedido-total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding-top: 0.9rem;
+  border-top: 1px solid rgba(210, 106, 143, 0.2);
+  color: var(--suave);
+  font-size: 0.98rem;
+}
+
+.pedido-rodape strong,
+.pedido-total strong {
+  font-family: var(--display);
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--ameixa);
+  background: linear-gradient(90deg, var(--ameixa), var(--amora));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 600px) {
+  .lista-pedidos > article,
+  .lista-pedidos > div,
+  .pedido-card,
+  .pedido {
+    padding: 1.2rem;
+  }
+
+  .pedido-topo h2,
+  .pedido-topo h3,
+  .pedido-cabecalho h2,
+  .pedido-cabecalho h3 {
+    font-size: 1.4rem;
+  }
+}

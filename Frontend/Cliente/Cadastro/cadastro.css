@@ -1,0 +1,256 @@
+body {
+  background:
+    radial-gradient(circle at 10% 12%, rgba(247, 174, 196, .82) 0, rgba(247, 174, 196, .55) 10%, transparent 29%),
+    radial-gradient(circle at 88% 18%, rgba(182, 207, 176, .78) 0, rgba(182, 207, 176, .48) 10%, transparent 31%),
+    radial-gradient(circle at 18% 78%, rgba(242, 177, 199, .72) 0, rgba(242, 177, 199, .42) 10%, transparent 32%),
+    radial-gradient(circle at 82% 84%, rgba(168, 210, 174, .72) 0, rgba(168, 210, 174, .42) 10%, transparent 34%),
+    linear-gradient(145deg, #fdf7f8 0%, #f7f2ec 48%, #edf3e9 100%);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: none;
+}
+
+.auth {
+  width: min(100% - 2rem, 760px);
+  min-height: 100vh;
+  height: auto;
+  margin: 0 auto;
+  padding: 1rem 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.auth > .logo {
+  position: static;
+  display: inline-flex;
+  width: fit-content;
+  height: auto;
+  align-self: center;
+  margin-bottom: .75rem;
+  padding: 0;
+  text-align: center;
+}
+
+.auth > .logo::before {
+  content: none;
+}
+
+.painel {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, .8fr) minmax(330px, 1.2fr);
+  min-height: min(500px, calc(100vh - 7.5rem));
+  padding: 0;
+  border: 1px solid rgba(176, 58, 102, .14);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, .92);
+  box-shadow: 0 18px 50px rgba(58, 31, 48, .12);
+  overflow: hidden;
+}
+
+.painel-decorativo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.25rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, .25), transparent 25%),
+    var(--gradiente-ameixa);
+  color: #fff;
+}
+
+.painel-decorativo span {
+  margin-bottom: .25rem;
+  font-size: .78rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .85;
+}
+
+.painel-decorativo strong {
+  font: 600 3.25rem/1 var(--display);
+}
+
+.painel-decorativo p {
+  margin-top: .75rem;
+  max-width: 12rem;
+  font-size: .95rem;
+  opacity: .9;
+}
+
+.painel-formulario {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.25rem 2.25rem .9rem;
+}
+
+.cabecalho-cadastro {
+  margin-bottom: .55rem;
+}
+
+.saudacao {
+  display: block;
+  margin-bottom: .15rem;
+  color: var(--amora);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.painel h1 {
+  margin-bottom: .05rem;
+  color: var(--ameixa);
+  font: 600 2.75rem/1.05 var(--display);
+}
+
+.cabecalho-cadastro p {
+  color: var(--suave);
+  font-size: .92rem;
+}
+
+.painel form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .35rem .65rem;
+}
+
+.campo {
+  display: grid;
+  gap: .15rem;
+}
+
+.campo-nome,
+.painel form .botao {
+  grid-column: 1 / -1;
+}
+
+.painel label {
+  color: var(--ameixa);
+  font-weight: 500;
+  font-size: .9rem;
+}
+
+.painel input {
+  width: 100%;
+  min-height: 2.55rem;
+  padding: .55rem .85rem;
+  border: 1px solid rgba(176, 58, 102, .28);
+  border-radius: .65rem;
+  background: rgba(255, 255, 255, .95);
+  color: var(--tinta);
+  font: inherit;
+  transition: border-color .2s, box-shadow .2s, background .2s;
+}
+
+.painel input:hover {
+  border-color: rgba(176, 58, 102, .55);
+}
+
+.painel input:focus {
+  border-color: var(--amora);
+  background: #fff;
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(176, 58, 102, .13);
+}
+
+.painel form .botao {
+  width: 100%;
+  min-height: 2.55rem;
+  margin-top: .25rem;
+  border-radius: .65rem;
+}
+
+.painel .botao:disabled {
+  cursor: wait;
+  opacity: .7;
+}
+
+.mensagem {
+  min-height: 1.1rem;
+  margin-top: .35rem;
+  color: var(--ameixa);
+  text-align: center;
+  font-size: .88rem;
+}
+
+.mensagem.erro {
+  color: #9d173b;
+}
+
+.links {
+  margin-top: .15rem;
+  padding-top: .35rem;
+  color: var(--suave);
+  text-align: center;
+  font-size: .92rem;
+}
+
+.links a {
+  color: var(--amora);
+  font-weight: 500;
+}
+
+@media (max-width: 650px) {
+  .auth {
+    width: min(100% - 1.25rem, 480px);
+  }
+
+  .painel {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .painel-decorativo {
+    min-height: 7.5rem;
+    padding: 1.15rem 1.35rem;
+  }
+
+  .painel-decorativo strong {
+    font-size: 2.4rem;
+  }
+
+  .painel-decorativo p {
+    margin-top: .35rem;
+  }
+
+  .painel-formulario {
+    padding: 1.25rem 1.15rem .9rem;
+  }
+
+  .painel form {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-nome,
+  .painel form .botao {
+    grid-column: auto;
+  }
+}
+
+@media (max-height: 650px) {
+  .auth {
+    padding: .5rem 0 !important;
+  }
+
+  .auth > .logo {
+    margin-bottom: .6rem;
+  }
+
+  .painel {
+    min-height: 420px;
+  }
+
+  .painel-formulario {
+    padding-top: 1rem;
+    padding-bottom: .65rem;
+  }
+
+  .painel h1 {
+    font-size: 2.5rem;
+  }
+}

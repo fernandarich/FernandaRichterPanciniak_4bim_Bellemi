@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo | Bellemi</title>
+  <link rel="stylesheet" href="menu.css">
+</head>
+<body>
+
+  <section id="estadoInicial" class="estado-inicial" role="status" aria-live="polite">
+    <h1 id="tituloEstado">Conectando ao servidor...</h1>
+    <p id="textoEstado">O painel administrativo só será exibido após validar o servidor e carregar os dados.</p>
+    <button id="tentarConectar" type="button" hidden>Tentar novamente</button>
+  </section>
+
+  <div id="adminApp" class="admin-app" hidden>
+  <aside>
+    <div>
+      <h1>Bellemi Admin</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a class="item" href="/Frontend/Admin/Menu/menu.html" aria-current="page">Início</a></li>
+        <li><a class="item" href="/Frontend/Admin/Produtos/produtos.html">Produtos</a></li>
+        <li><a class="item" href="/Frontend/Admin/Pedidos/pedidos.html">Pedidos</a></li>
+        <li><a class="item" href="/Frontend/Admin/Clientes/clientes.html">Clientes</a></li>
+        <li><a class="item" href="/Frontend/Admin/Funcionarios/funcionarios.html">Funcionários</a></li>
+        <li><a class="item" href="/Frontend/Admin/Devolucoes/devolucoes.html">Devoluções</a></li>
+      </ul>
+    </nav>
+    <button id="sair" type="button">Sair</button>
+  </aside>
+
+  <main>
+    <header id="dashboard">
+      <div>
+        <h2>Dashboard</h2>
+        <p>Visão geral atualizada com os dados da loja</p>
+      </div>
+      <div>
+        <span id="nomeAdministrador">Administrador</span>
+        <button id="atualizarDashboard" type="button">Atualizar</button>
+      </div>
+    </header>
+
+    <p id="mensagemDashboard" role="status" aria-live="polite"></p>
+
+    <section id="destaques">
+      <article>
+        <h3>Total de Pedidos</h3>
+        <p id="totalPedidos">—</p>
+        <small>Pedidos registrados</small>
+      </article>
+
+      <article>
+        <h3>Produtos Cadastrados</h3>
+        <p id="totalProdutos">—</p>
+        <small id="categoriasComProdutos">Categorias com produtos: —</small>
+      </article>
+
+      <article id="clientes-cadastrados">
+        <h3>Clientes Cadastrados</h3>
+        <p id="totalClientes">—</p>
+        <small>Contas de cliente no banco</small>
+      </article>
+
+      <article id="mais-vendidos">
+        <h3>Produtos Mais Vendidos</h3>
+        <small class="subtitulo-mais-vendidos">Ranking por unidades vendidas</small>
+        <ol id="listaMaisVendidos" aria-label="Ranking dos produtos mais vendidos">
+          <li>Carregando dados...</li>
+        </ol>
+      </article>
+    </section>
+
+    <hr>
+
+    <section id="aguardando-aprovacao">
+      <div>
+        <div>
+          <h3>Pedidos Aguardando Confirmação</h3>
+          <p>Confira o pagamento antes de confirmar um pedido Pix.</p>
+        </div>
+        <span id="quantidadePendentes" class="contador-pendentes">Carregando...</span>
+      </div>
+      <ul id="listaPendentes">
+        <li>Carregando pedidos...</li>
+      </ul>
+    </section>
+
+    <hr>
+
+    <section id="ultimos-pedidos">
+      <div>
+        <h3>Últimos Pedidos</h3>
+        <span>Exibindo os 10 mais recentes</span>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Data</th>
+            <th>Valor Total</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="listaRecentes">
+          <tr><td colspan="5">Carregando pedidos...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+  </div>
+  <script src="menu.js" defer></script>
+</body>
+</html>
