@@ -1,6 +1,6 @@
 (function () {
   const API_URL = `http://${location.hostname || 'localhost'}:3000/api/acessorios/produtos`;
-  const PASTA_IMAGENS = '/Frontend/img/';
+  const PASTA_IMAGENS = '/FernandaRichterPanciniak_4bim_Bellemi/Frontend/img/'; // onde ficam as fotos (o banco guarda só o nome do arquivo)
   const grade = document.getElementById('grade');
   const campo = document.getElementById('campoBusca');
   const limpar = document.getElementById('limparBusca');

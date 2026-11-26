@@ -1,0 +1,10 @@
+table { min-width: 930px; }
+#formFuncionario { display: grid; gap: 8px; }
+#formFuncionario label { margin: 8px 0 0; color: #485368; font-size: .9rem; font-weight: 650; }
+#formFuncionario input { width: 100%; min-height: 42px; padding: 9px 12px; border: 1px solid #d8deea; border-radius: 8px; color: #242938; font: inherit; }
+#formFuncionario input:focus { outline: 3px solid rgba(61,103,172,.16); border-color: #3d67ac; }
+#formFuncionario input[readonly] { background: #f2f4f8; color: #697386; }
+#formFuncionario .gc-campo-modal { display: grid; gap: 8px; }
+#formFuncionario small { margin-top: -3px; color: #747d8d; }
+#formFuncionario .gc-msg { margin: 4px 0 0; }
+#formFuncionario .gc-acoes-modal { display: flex; justify-content: flex-end; gap: 10px; margin-top: 8px; }

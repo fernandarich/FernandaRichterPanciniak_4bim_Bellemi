@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gerencie os clientes da loja Bellemi.">
+  <title>Gerenciar Clientes | Bellemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Cliente/cliente.css">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Admin.css">
+</head>
+<body>
+  <header class="cabecalho-clientes">
+    <a class="btn-voltar-menu" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Menu/menu.html">← Voltar ao painel</a>
+    <h1>Gerenciar Clientes</h1>
+    <p>Consulte os cadastros e atualize os dados dos clientes.</p>
+  </header>
+
+  <main>
+    <section class="list-section" aria-labelledby="tituloClientes">
+      <div class="gc-titulo-acoes">
+        <h2 id="tituloClientes">Clientes cadastrados</h2>
+        <button type="button" id="btnNovoCliente" class="gc-btn-salvar">Novo cliente</button>
+      </div>
+
+      <div class="gc-filtros">
+        <div class="gc-campo">
+          <label for="buscarCliente">Buscar cliente</label>
+          <input type="search" id="buscarCliente" placeholder="Nome, CPF ou e-mail...">
+        </div>
+        <button type="button" id="btnLimpar" class="btn-secondary">Limpar</button>
+      </div>
+
+      <p id="mensagem" class="gc-msg" role="status" aria-live="polite">Os clientes aparecerão aqui quando forem carregados.</p>
+
+      <div class="table-container">
+        <table>
+          <caption>Clientes cadastrados na loja</caption>
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaClientes">
+            <tr><td colspan="5">Carregando clientes...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>&copy; 2026 Bellemi. Todos os direitos reservados.</p></footer>
+
+  <div id="modalCliente" class="gc-modal" aria-hidden="true" hidden>
+    <div class="gc-modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloModalCliente">
+      <div class="gc-modal-topo">
+        <div>
+          <h2 id="tituloModalCliente">Modificar detalhes</h2>
+          <p id="subtituloModalCliente">Atualize as informações do cliente.</p>
+        </div>
+        <button type="button" id="btnFecharModal" class="gc-fechar" aria-label="Fechar">&times;</button>
+      </div>
+
+      <form id="formCliente">
+        <label for="clienteNome">Nome completo</label>
+        <input id="clienteNome" name="nome" type="text" maxlength="100" required>
+
+        <label for="clienteCpf">CPF</label>
+        <input id="clienteCpf" name="cpf" type="text" maxlength="11" inputmode="numeric" required readonly aria-describedby="avisoCpf">
+        <small id="avisoCpf">O CPF não pode ser alterado.</small>
+
+        <div class="gc-campo-modal" id="campoSenhaCliente" hidden>
+          <label for="clienteSenha">Senha inicial</label>
+          <input id="clienteSenha" name="senha" type="password" maxlength="20" autocomplete="new-password">
+        </div>
+
+        <div class="gc-campo-modal" id="campoRendaCliente" hidden>
+          <label for="clienteRenda">Renda mensal (R$)</label>
+          <input id="clienteRenda" name="renda" type="number" min="0" step="1">
+        </div>
+
+        <label for="clienteEmail">E-mail</label>
+        <input id="clienteEmail" name="email" type="email" maxlength="250" required>
+
+        <label for="clienteTelefone">Telefone</label>
+        <input id="clienteTelefone" name="telefone" type="tel" maxlength="20">
+
+        <p id="mensagemModal" class="gc-msg" role="status" aria-live="polite"></p>
+        <div class="gc-acoes-modal">
+          <button type="button" id="btnCancelar" class="btn-secondary">Cancelar</button>
+          <button type="submit" id="btnSalvarCliente" class="gc-btn-salvar">Salvar alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./cliente.js" defer></script>
+</body>
+</html>

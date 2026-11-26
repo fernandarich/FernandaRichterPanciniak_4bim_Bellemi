@@ -186,6 +186,17 @@ $$;
 
 --DROP TABLE CARTAO;
 
+CREATE TABLE IF NOT EXISTS DEVOLUCAO(
+    id_devolucao SERIAL PRIMARY KEY,
+    id_pedido INTEGER NOT NULL UNIQUE,
+    motivo VARCHAR(500),
+    status_devolucao VARCHAR(30) NOT NULL DEFAULT 'Pendente',
+    data_solicitacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_pedido) REFERENCES PEDIDO(id_pedido)
+);
+
+--DROP TABLE DEVOLUCAO;
+
 --INSERTS GIGANTES TÁ?
 
 INSERT INTO PESSOA (cpf_pessoa, nome_pessoa, email, senha, telefone) VALUES

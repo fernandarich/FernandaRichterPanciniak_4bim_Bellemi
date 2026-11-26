@@ -1,11 +1,5 @@
 const pool = require('../../db');
 
-function erroHttp(status, mensagem) {
-    const erro = new Error(mensagem);
-    erro.status = status;
-    return erro;
-}
-
 const consultaPedidos = `
     SELECT
         ped.id_pedido AS id,
@@ -131,76 +125,4 @@ async function obterDashboard(req, res) {
     }
 }
 
-async function atualizarStatusPedido(req, res) {
-    const idPedido = Number(req.params.id);
-    const { status } = req.body || {};
-    if (!Number.isSafeInteger(idPedido) || idPedido <= 0 ||
-        !['Aprovado', 'Cancelado'].includes(status)) {
-        return res.status(400).json({ erro: 'Informe um pedido e uma ação válidos.' });
-    }
-
-    let client;
-    let transacaoIniciada = false;
-    try {
-        client = await pool.connect();
-        await client.query('BEGIN');
-        transacaoIniciada = true;
-
-        const { rows } = await client.query(
-            `SELECT
-                ped.status_pedido,
-                pag.id_pagamento,
-                pag.status_pagamento
-             FROM pedido ped
-             LEFT JOIN pagamento pag ON pag.id_pedido = ped.id_pedido
-             WHERE ped.id_pedido = $1
-             FOR UPDATE OF ped`,
-            [idPedido]
-        );
-        if (!rows.length) throw erroHttp(404, 'O pedido não foi encontrado.');
-
-        const pedido = rows[0];
-        const statusPedido = pedido.status_pedido.toLowerCase();
-        const statusPagamento = (pedido.status_pagamento || '').toLowerCase();
-        const estaPendente = ['pendente', 'aguardando pagamento'].includes(statusPedido) ||
-            statusPagamento === 'pendente';
-        if (!estaPendente) {
-            throw erroHttp(409, 'Este pedido não está mais aguardando confirmação.');
-        }
-        if (!pedido.id_pagamento) {
-            throw erroHttp(409, 'O pedido não possui um pagamento para atualizar.');
-        }
-
-        await client.query(
-            'UPDATE pedido SET status_pedido = $2 WHERE id_pedido = $1',
-            [idPedido, status]
-        );
-        await client.query(
-            `UPDATE pagamento
-             SET status_pagamento = $2,
-                 data_pagamento = CASE WHEN $3 THEN CURRENT_DATE ELSE NULL END
-             WHERE id_pedido = $1`,
-            [idPedido, status, status === 'Aprovado']
-        );
-
-        await client.query('COMMIT');
-        transacaoIniciada = false;
-        res.json({ id: idPedido, status });
-    } catch (erro) {
-        if (client && transacaoIniciada) {
-            try {
-                await client.query('ROLLBACK');
-            } catch (erroRollback) {
-                console.error('Erro ao desfazer atualização do pedido:', erroRollback);
-            }
-        }
-
-        if (erro.status) return res.status(erro.status).json({ erro: erro.message });
-        console.error('Erro ao atualizar status do pedido no painel:', erro);
-        res.status(500).json({ erro: 'Não foi possível atualizar o pedido.' });
-    } finally {
-        if (client) client.release();
-    }
-}
-
-module.exports = { obterDashboard, atualizarStatusPedido };
+module.exports = { obterDashboard };

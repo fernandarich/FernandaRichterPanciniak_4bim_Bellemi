@@ -255,7 +255,7 @@ if (btnConta) {
     const icone = document.createElement('span');
     item.dataset.linkPedidos = '';
     link.className = 'item';
-    link.href = '/Frontend/Cliente/Pedidos/pedidos.html';
+    link.href = '/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Cliente/Pedidos/pedidos.html';
     link.textContent = 'Meus Pedidos';
     link.prepend(icone);
     if (location.pathname.toLowerCase().endsWith('/pedidos.html')) {

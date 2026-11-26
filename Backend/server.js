@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const pool = require('./db');
+const path = require('path');
 
 const app = express();
 const PORT = 3000;
@@ -20,9 +21,10 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
+app.use('/Frontend', express.static(path.resolve(__dirname, '../Frontend')));
 
 app.get('/', (req, res) => {
-    res.send('Bem-vinda à Bellemi! 🎀');
+    res.redirect('/Frontend/Cliente/Menu/menu.html');
 });
 
 app.get('/teste-banco', async (req, res) => {
@@ -49,6 +51,10 @@ app.use('/api/maquiagem-vegana', require('./Client/Routes/maquiagemVeganaRoutes'
 app.use('/api/pedidos', require('./Client/Routes/pedidosRoutes'));
 app.use('/api/pix', require('./Client/Routes/pixRoutes'));
 app.use('/api/admin/produtos', require('./Admin/Routes/produtosRoutes'));
+app.use('/api/admin/pedidos', require('./Admin/Routes/pedidosRoutes'));
+app.use('/api/admin/clientes', require('./Admin/Routes/clienteRoutes'));
+app.use('/api/admin/funcionarios', require('./Admin/Routes/funcionarioRoutes'));
+app.use('/api/admin/devolucoes', require('./Admin/Routes/devolucoesRoutes'));
 app.use('/api/admin', require('./Admin/Routes/adminRoutes'));
 app.use('/api/skincare', require('./Client/Routes/skincareRoutes'));
 app.use('/api', require('./Client/Routes/maquiagemRoutes'));

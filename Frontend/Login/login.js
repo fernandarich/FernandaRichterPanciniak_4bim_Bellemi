@@ -3,6 +3,7 @@
   const form = document.getElementById('formLogin');
   const mensagem = document.getElementById('mensagem');
   const botao = form.querySelector('button[type="submit"]');
+  const escolhaPerfil = document.getElementById('escolhaPerfil');
   const destinosCliente = {
     pagamento: '../Cliente/Pagamento/pagamento.html',
     pedidos: '../Cliente/Pedidos/pedidos.html'
@@ -23,6 +24,49 @@
     }
   }
 
+  function mostrarEscolhaPerfil(perfisDisponiveis = []) {
+    form.hidden = true;
+    escolhaPerfil.hidden = false;
+    document.querySelector('.links').hidden = true;
+    const titulo = document.querySelector('.cabecalho-login h1');
+    const descricao = document.querySelector('.cabecalho-login p');
+    titulo.textContent = 'Como deseja entrar?';
+    descricao.textContent = 'Escolha a área que quer acessar agora.';
+    escolhaPerfil.querySelectorAll('[data-perfil]').forEach(botaoPerfil => {
+      botaoPerfil.hidden = !perfisDisponiveis.includes(botaoPerfil.dataset.perfil);
+    });
+    mensagem.textContent = '';
+    mensagem.classList.remove('erro');
+  }
+
+  async function selecionarPerfil(perfil, botaoPerfil) {
+    botaoPerfil.disabled = true;
+    mensagem.textContent = '';
+    mensagem.classList.remove('erro');
+    try {
+      const resposta = await fetch(`${API_URL}/api/selecionar-perfil`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ perfil })
+      });
+      const dados = await resposta.json();
+      if (!resposta.ok) throw new Error(dados.erro || 'Não foi possível escolher essa área.');
+      irParaPerfil(dados.usuario);
+    } catch (erro) {
+      mensagem.textContent = erro.message;
+      mensagem.classList.add('erro');
+      botaoPerfil.disabled = false;
+    }
+  }
+
+  escolhaPerfil.addEventListener('click', event => {
+    const botaoPerfil = event.target.closest('[data-perfil]');
+    if (botaoPerfil && !botaoPerfil.hidden) {
+      selecionarPerfil(botaoPerfil.dataset.perfil, botaoPerfil);
+    }
+  });
+
   async function validarSessaoAtual() {
     try {
       const resposta = await fetch(`${API_URL}/api/sessao`, {
@@ -30,6 +74,10 @@
       });
       if (!resposta.ok) return;
       const dados = await resposta.json();
+      if (dados.escolherPerfil) {
+        mostrarEscolhaPerfil(dados.perfisDisponiveis);
+        return;
+      }
       irParaPerfil(dados.usuario);
     } catch (erro) {
       console.error('Erro ao validar sessão:', erro);
@@ -62,6 +110,10 @@
       }
       if (!resposta.ok) throw new Error(dados.erro || 'Não foi possível fazer login.');
 
+      if (dados.escolherPerfil) {
+        mostrarEscolhaPerfil(dados.perfisDisponiveis);
+        return;
+      }
       irParaPerfil(dados.usuario);
     } catch (erro) {
       console.error('Erro ao fazer login:', erro);

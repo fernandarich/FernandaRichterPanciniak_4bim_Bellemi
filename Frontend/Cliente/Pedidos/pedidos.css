@@ -179,6 +179,75 @@
   gap: 1rem;
 }
 
+.pedido-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-top: 1rem;
+}
+
+.pedido-acoes button,
+.acoes-devolucao button {
+  min-height: 2.6rem;
+  padding: .55rem 1rem;
+  border: 0;
+  border-radius: var(--raio-p);
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.pedido-acoes .botao-cancelar,
+.botao-secundario {
+  border: 1px solid rgba(139, 30, 36, .25);
+  background: #fff;
+  color: #8b1e24;
+}
+
+.devolucao-status {
+  margin-top: 1rem;
+  padding: .65rem .85rem;
+  border-radius: var(--raio-p);
+  background: var(--dourado-suave);
+  color: #6e4e15;
+  font-weight: 600;
+}
+
+.dialog-devolucao {
+  position: fixed;
+  inset: 0;
+  width: min(100% - 2rem, 480px);
+  max-width: calc(100vw - 2rem);
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  overflow-y: auto;
+  padding: 0;
+  border: 1px solid rgba(210, 106, 143, .3);
+  border-radius: var(--raio-g);
+  background: linear-gradient(150deg, #fff 0%, #fdf7f8 65%, #f0f4ed 100%);
+  color: var(--tinta);
+  box-shadow: var(--sombra-alta);
+}
+
+.dialog-devolucao::backdrop { background: rgba(43, 20, 32, .48); backdrop-filter: blur(4px); }
+.dialog-devolucao form { display: grid; gap: .7rem; padding: clamp(1.25rem, 4vw, 2rem); }
+.dialog-devolucao h2 { margin: 0; color: var(--ameixa); font: 600 2rem/1.1 var(--display); }
+.dialog-devolucao p { margin: 0; color: var(--suave); }
+.dialog-devolucao label { margin-top: .35rem; color: var(--ameixa); font-weight: 600; }
+.dialog-devolucao textarea { width: 100%; min-height: 120px; padding: .8rem .9rem; border: 1px solid rgba(176,58,102,.25); border-radius: .8rem; background: rgba(255,255,255,.9); color: var(--tinta); font: inherit; resize: vertical; }
+.dialog-devolucao textarea:focus { outline: 3px solid rgba(168,50,94,.14); border-color: var(--amora); }
+.acoes-devolucao { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: .65rem; margin-top: .5rem; }
+.acoes-devolucao button { min-width: 9rem; }
+.dialog-devolucao #mensagemDevolucao { min-height: 1.4rem; color: var(--amora-escura); }
+.dialog-devolucao button:disabled { cursor: wait; opacity: .65; }
+
+@media (max-width: 480px) {
+  .dialog-devolucao { border-radius: 1.15rem; }
+  .dialog-devolucao h2 { font-size: 1.8rem; }
+  .acoes-devolucao { flex-direction: column-reverse; }
+  .acoes-devolucao button { width: 100%; }
+}
+
 .pedido-rodape,
 .pedido-total {
   display: flex;

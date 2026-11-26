@@ -31,10 +31,11 @@ function obterTokenSessao(req) {
     return cookie ? cookie.slice(COOKIE_SESSAO.length + 1) : '';
 }
 
-function criarSessao(usuario, res) {
+function criarSessao(usuario, res, perfisDisponiveis = []) {
     const token = randomBytes(32).toString('hex');
     sessoes.set(token, {
         usuario,
+        perfisDisponiveis,
         expiraEm: Date.now() + DURACAO_SESSAO_MS
     });
     definirCookieSessao(res, token);
@@ -56,11 +57,8 @@ async function login(req, res) {
                 p.cpf_pessoa AS id,
                 p.nome_pessoa AS nome,
                 p.senha,
-                CASE
-                    WHEN f.cpf_pessoa IS NOT NULL THEN 'admin'
-                    WHEN c.cpf_pessoa IS NOT NULL THEN 'cliente'
-                    ELSE NULL
-                END AS perfil
+                (f.cpf_pessoa IS NOT NULL) AS eh_funcionario,
+                (c.cpf_pessoa IS NOT NULL) AS eh_cliente
              FROM PESSOA p
              LEFT JOIN FUNCIONARIO f ON f.cpf_pessoa = p.cpf_pessoa
              LEFT JOIN CLIENTE c ON c.cpf_pessoa = p.cpf_pessoa
@@ -80,16 +78,26 @@ async function login(req, res) {
             return res.status(401).json({ erro: 'E-mail ou senha incorretos.' });
         }
 
-        if (!pessoa.perfil) {
+        if (!pessoa.eh_funcionario && !pessoa.eh_cliente) {
             return res.status(403).json({
-                erro: 'Esta conta não está cadastrada como cliente ou administrador.'
+                erro: 'Esta conta não está cadastrada como cliente ou funcionário.'
             });
         }
 
-        res.json(criarSessao({
+        if (pessoa.eh_funcionario) {
+            const perfisDisponiveis = ['cliente', 'funcionario'];
+            const sessao = criarSessao({
+                id: pessoa.id,
+                nome: pessoa.nome,
+                perfil: 'selecao'
+            }, res, perfisDisponiveis);
+            return res.json({ ...sessao, escolherPerfil: true, perfisDisponiveis });
+        }
+
+        return res.json(criarSessao({
             id: pessoa.id,
             nome: pessoa.nome,
-            perfil: pessoa.perfil
+            perfil: 'cliente'
         }, res));
     } catch (erro) {
         console.error('Erro ao autenticar usuário:', erro);
@@ -262,7 +270,31 @@ function verificarSessao(req, res) {
         return res.status(401).json({ erro: 'Sua sessão expirou. Entre novamente.' });
     }
 
-    res.json({ usuario: sessao.usuario });
+    res.json({
+        usuario: sessao.usuario,
+        escolherPerfil: sessao.usuario.perfil === 'selecao',
+        perfisDisponiveis: sessao.usuario.perfil === 'selecao' ? sessao.perfisDisponiveis : []
+    });
+}
+
+function selecionarPerfil(req, res) {
+    const token = obterTokenSessao(req);
+    const sessao = token && sessoes.get(token);
+
+    if (!sessao || sessao.expiraEm <= Date.now()) {
+        if (token) sessoes.delete(token);
+        limparCookieSessao(res);
+        return res.status(401).json({ erro: 'Sua sessão expirou. Entre novamente.' });
+    }
+
+    const perfilSolicitado = req.body?.perfil;
+    if (sessao.usuario.perfil !== 'selecao' || !sessao.perfisDisponiveis.includes(perfilSolicitado)) {
+        return res.status(400).json({ erro: 'Escolha uma forma de acesso válida.' });
+    }
+
+    sessao.usuario.perfil = perfilSolicitado === 'funcionario' ? 'admin' : 'cliente';
+    sessao.perfisDisponiveis = [];
+    return res.json({ usuario: sessao.usuario });
 }
 
 function exigirCliente(req, res, next) {
@@ -310,6 +342,7 @@ function encerrarSessao(req, res) {
 
 module.exports = {
     login,
+    selecionarPerfil,
     cadastrarCliente,
     consultarConta,
     atualizarConta,

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gerencie os pedidos da loja Bellemi.">
+  <title>Gerenciar Pedidos | Bellemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Pedidos/pedidos.css">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Admin.css">
+</head>
+<body>
+  <header class="cabecalho-pedidos">
+    <a class="btn-voltar-menu" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Menu/menu.html">
+      ← Voltar ao painel
+    </a>
+    <h1>Gerenciar Pedidos</h1>
+    <p>Confira os pagamentos e acompanhe o status de cada pedido.</p>
+  </header>
+
+  <main>
+    <section class="list-section" aria-labelledby="tituloPedidos">
+      <h2 id="tituloPedidos">Pedidos</h2>
+
+      <div class="gp-abas" role="tablist" aria-label="Filtrar pedidos por pagamento">
+        <button type="button" class="gp-aba gp-ativa" id="abaNaoConfirmado"
+          role="tab" aria-selected="true" aria-controls="painelPedidos"
+          data-aba="nao_confirmado">
+          Pagamento não confirmado
+          <span class="gp-contador" id="contNaoConfirmado">0</span>
+        </button>
+        <button type="button" class="gp-aba" id="abaConfirmado"
+          role="tab" aria-selected="false" aria-controls="painelPedidos"
+          data-aba="confirmado" tabindex="-1">
+          Pagamento confirmado
+          <span class="gp-contador" id="contConfirmado">0</span>
+        </button>
+      </div>
+
+      <div class="gp-filtros">
+        <div class="gp-campo">
+          <label for="buscar">Buscar pedido</label>
+          <input type="search" id="buscar" placeholder="ID, cliente ou data...">
+        </div>
+        <div class="gp-campo" id="campoFiltroStatus" hidden>
+          <label for="filtroStatus">Status do pedido</label>
+          <select id="filtroStatus">
+            <option value="">Todos</option>
+            <option value="Aguardando pagamento">Aguardando pagamento</option>
+            <option value="Pago">Pago</option>
+            <option value="Em Separação">Em separação</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Entregue">Entregue</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+        </div>
+        <button type="button" id="btnLimpar" class="btn-secondary">Limpar</button>
+      </div>
+
+      <p id="mensagem" class="gp-msg" role="status" aria-live="polite">
+        Os pedidos aparecerão aqui quando forem carregados.
+      </p>
+
+      <div class="table-container" id="painelPedidos" role="tabpanel" aria-labelledby="abaNaoConfirmado">
+        <table>
+          <caption>Pedidos cadastrados na loja</caption>
+          <thead id="tabelaCabecalho">
+            <tr>
+              <th scope="col">Pedido</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Data</th>
+              <th scope="col">Total</th>
+              <th scope="col">Pagamento</th>
+              <th scope="col">Status</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaCorpo">
+            <tr><td colspan="7">Carregando pedidos...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Bellemi. Todos os direitos reservados.</p>
+  </footer>
+
+  <div id="modalDetalhes" class="gp-modal" aria-hidden="true" hidden>
+    <div class="gp-modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloDetalhes" aria-describedby="detalhesPedido">
+      <div class="gp-modal-topo">
+        <h2 id="tituloDetalhes">Detalhes do pedido</h2>
+        <button type="button" id="btnFecharModal" class="gp-fechar" aria-label="Fechar detalhes">
+          &times;
+        </button>
+      </div>
+      <div id="detalhesPedido" class="gp-detalhes"></div>
+    </div>
+  </div>
+  <script src="./pedidos.js" defer></script>
+</body>
+</html>

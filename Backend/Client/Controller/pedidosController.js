@@ -313,6 +313,8 @@ async function listarMeusPedidos(req, res) {
                 frete.valor_frete AS valor_frete,
                 forma.forma_pag AS forma_pagamento,
                 pag.status_pagamento AS status_pagamento,
+                dev.status_devolucao,
+                dev.motivo AS motivo_devolucao,
                 COALESCE(
                     JSON_AGG(
                         JSON_BUILD_OBJECT(
@@ -332,6 +334,7 @@ async function listarMeusPedidos(req, res) {
              LEFT JOIN produto prod ON prod.id_produto = ip.id_produto
              LEFT JOIN pagamento pag ON pag.id_pedido = ped.id_pedido
              LEFT JOIN forma_pagamento forma ON forma.id_formapag = pag.id_formapag
+             LEFT JOIN devolucao dev ON dev.id_pedido = ped.id_pedido
              WHERE ped.cpf_pessoa = $1
              GROUP BY
                 ped.id_pedido,
@@ -341,7 +344,9 @@ async function listarMeusPedidos(req, res) {
                 frete.estado,
                 frete.valor_frete,
                 forma.forma_pag,
-                pag.status_pagamento
+                pag.status_pagamento,
+                dev.status_devolucao,
+                dev.motivo
              ORDER BY ped.data_pedido DESC, ped.id_pedido DESC`,
             [req.usuario.id]
         );
@@ -365,4 +370,120 @@ async function listarMeusPedidos(req, res) {
     }
 }
 
-module.exports = { listarFretes, listarMeusCartoes, criarPedidoTeste, listarMeusPedidos };
+function normalizarStatus(valor) {
+    return String(valor || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .trim();
+}
+
+function validarIdPedido(valor) {
+    return /^\d+$/.test(String(valor)) && Number.isSafeInteger(Number(valor)) && Number(valor) > 0;
+}
+
+async function solicitarDevolucao(req, res) {
+    const idPedido = req.params.id;
+    const motivo = typeof req.body?.motivo === 'string' ? req.body.motivo.trim() : '';
+    if (!validarIdPedido(idPedido)) return res.status(400).json({ erro: 'Pedido inválido.' });
+    if (motivo.length > 500) return res.status(400).json({ erro: 'O motivo deve ter até 500 caracteres.' });
+
+    let client;
+    try {
+        client = await pool.connect();
+        await client.query('BEGIN');
+        const { rows: pedidos } = await client.query(
+            `SELECT status_pedido
+             FROM pedido
+             WHERE id_pedido = $1 AND cpf_pessoa = $2
+             FOR UPDATE`,
+            [Number(idPedido), req.usuario.id]
+        );
+        if (!pedidos.length) throw erroHttp(404, 'Pedido não encontrado.');
+        if (normalizarStatus(pedidos[0].status_pedido) === 'cancelado') {
+            throw erroHttp(409, 'Não é possível pedir devolução de um pedido cancelado.');
+        }
+
+        const { rows } = await client.query(
+            `INSERT INTO devolucao (id_pedido, motivo)
+             VALUES ($1, $2)
+             ON CONFLICT (id_pedido) DO NOTHING
+             RETURNING id_devolucao AS id, id_pedido, motivo, status_devolucao, data_solicitacao`,
+            [Number(idPedido), motivo || null]
+        );
+        if (!rows.length) throw erroHttp(409, 'Já existe uma solicitação de devolução para este pedido.');
+        await client.query('COMMIT');
+        return res.status(201).json(rows[0]);
+    } catch (erro) {
+        if (client) {
+            try { await client.query('ROLLBACK'); } catch (erroRollback) {
+                console.error('Erro ao desfazer solicitação de devolução:', erroRollback);
+            }
+        }
+        if (erro.status) return res.status(erro.status).json({ erro: erro.message });
+        console.error('Erro ao solicitar devolução:', erro);
+        return res.status(500).json({ erro: 'Não foi possível solicitar a devolução.' });
+    } finally {
+        if (client) client.release();
+    }
+}
+
+async function cancelarPedidoCliente(req, res) {
+    const idPedido = req.params.id;
+    if (!validarIdPedido(idPedido)) return res.status(400).json({ erro: 'Pedido inválido.' });
+
+    let client;
+    try {
+        client = await pool.connect();
+        await client.query('BEGIN');
+        const { rows } = await client.query(
+            `SELECT ped.status_pedido, pag.status_pagamento
+             FROM pedido ped
+             LEFT JOIN pagamento pag ON pag.id_pedido = ped.id_pedido
+             WHERE ped.id_pedido = $1 AND ped.cpf_pessoa = $2
+             FOR UPDATE OF ped`,
+            [Number(idPedido), req.usuario.id]
+        );
+        if (!rows.length) throw erroHttp(404, 'Pedido não encontrado.');
+
+        const pedido = rows[0];
+        const statusPedido = normalizarStatus(pedido.status_pedido);
+        const statusPagamento = normalizarStatus(pedido.status_pagamento);
+        const pagamentoConfirmado = ['aprovado', 'pago'].includes(statusPagamento);
+        const pagamentoPendente = ['pendente', 'aguardando pagamento'].includes(statusPedido) ||
+            statusPagamento === 'pendente';
+        if (!pagamentoPendente || pagamentoConfirmado || statusPagamento === 'cancelado' || statusPedido === 'cancelado') {
+            throw erroHttp(409, 'Só é possível cancelar antes da confirmação do pagamento.');
+        }
+
+        await client.query('UPDATE pedido SET status_pedido = $2 WHERE id_pedido = $1', [Number(idPedido), 'Cancelado']);
+        await client.query(
+            `UPDATE pagamento
+             SET status_pagamento = 'Cancelado', data_pagamento = NULL
+             WHERE id_pedido = $1 AND LOWER(status_pagamento) = 'pendente'`,
+            [Number(idPedido)]
+        );
+        await client.query('COMMIT');
+        return res.json({ id: Number(idPedido), status: 'Cancelado' });
+    } catch (erro) {
+        if (client) {
+            try { await client.query('ROLLBACK'); } catch (erroRollback) {
+                console.error('Erro ao desfazer cancelamento do pedido:', erroRollback);
+            }
+        }
+        if (erro.status) return res.status(erro.status).json({ erro: erro.message });
+        console.error('Erro ao cancelar pedido do cliente:', erro);
+        return res.status(500).json({ erro: 'Não foi possível cancelar o pedido.' });
+    } finally {
+        if (client) client.release();
+    }
+}
+
+module.exports = {
+    listarFretes,
+    listarMeusCartoes,
+    criarPedidoTeste,
+    listarMeusPedidos,
+    solicitarDevolucao,
+    cancelarPedidoCliente
+};

@@ -2,7 +2,7 @@
 (function () {
   // ---------- Ajuste aqui ----------
   const API_URL = 'http://localhost:3000';   // endereço do seu servidor (o da porta do server.js)
-  const PASTA_IMAGENS = '/Frontend/img/';    // onde ficam as fotos (o banco guarda só o nome do arquivo)
+  const PASTA_IMAGENS = '/FernandaRichterPanciniak_4bim_Bellemi/Frontend/img/';    // onde ficam as fotos (o banco guarda só o nome do arquivo)
   // ---------------------------------
 
   // A categoria da página vem do <body data-categoria="Maquiagem">. Para criar outra página

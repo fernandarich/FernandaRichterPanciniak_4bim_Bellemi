@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Consulte as solicitações de devolução da loja Bellemi.">
+  <title>Devoluções | Bellemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Devolucoes/devolucoes.css">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Admin.css">
+</head>
+<body>
+  <header class="cabecalho-devolucoes">
+    <a class="btn-voltar-menu" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Menu/menu.html">← Voltar ao painel</a>
+    <h1>Devoluções</h1>
+    <p>Solicitações enviadas pelos clientes.</p>
+  </header>
+
+  <main>
+    <section class="list-section" aria-labelledby="tituloDevolucoes">
+      <h2 id="tituloDevolucoes">Solicitações de devolução</h2>
+      <p id="mensagemDevolucoes" class="dv-mensagem" role="status" aria-live="polite">Carregando devoluções...</p>
+      <div class="table-container">
+        <table>
+          <caption>Devoluções solicitadas na loja</caption>
+          <thead>
+            <tr>
+              <th scope="col">Solicitação</th>
+              <th scope="col">Pedido</th>
+              <th scope="col">Cliente</th>
+              <th scope="col">Data</th>
+              <th scope="col">Motivo</th>
+              <th scope="col">Status da devolução</th>
+              <th scope="col">Status do pedido</th>
+              <th scope="col">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaDevolucoes">
+            <tr><td colspan="8">Carregando devoluções...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>&copy; 2026 Bellemi. Todos os direitos reservados.</p></footer>
+  <script src="./devolucoes.js" defer></script>
+</body>
+</html>

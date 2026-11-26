@@ -1,7 +1,7 @@
 (function () {
     const API_URL = `http://${location.hostname || 'localhost'}:3000/api`;
-    const PASTA_IMAGENS = '/Frontend/img/';
-    const IMAGEM_PADRAO = '../../img/silhueta.png';
+    const PASTA_IMAGENS = '/FernandaRichterPanciniak_4bim_Bellemi/Frontend/img/';
+    const IMAGEM_PADRAO = `${PASTA_IMAGENS}silhueta.png`;
     const inputId = document.getElementById('inputId_produto');
     const inputNome = document.getElementById('inputNome_produto');
     const inputDescricao = document.getElementById('inputDescricao_produto');

@@ -4,7 +4,9 @@
         listarFretes,
         listarMeusCartoes,
         criarPedidoTeste,
-        listarMeusPedidos
+        listarMeusPedidos,
+        solicitarDevolucao,
+        cancelarPedidoCliente
     } = require('../Controller/pedidosController');
 
     const router = express.Router();
@@ -13,5 +15,7 @@
     router.get('/cartoes', exigirCliente, listarMeusCartoes);
     router.get('/', exigirCliente, listarMeusPedidos);
     router.post('/', exigirCliente, criarPedidoTeste);
+    router.post('/:id/devolucoes', exigirCliente, solicitarDevolucao);
+    router.patch('/:id/cancelar', exigirCliente, cancelarPedidoCliente);
 
     module.exports = router;

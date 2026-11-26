@@ -1,6 +1,7 @@
 const express = require('express');
 const {
     login,
+    selecionarPerfil,
     cadastrarCliente,
     consultarConta,
     atualizarConta,
@@ -12,6 +13,7 @@ const {
 const router = express.Router();
 
 router.post('/login', login);
+router.post('/selecionar-perfil', selecionarPerfil);
 router.post('/clientes', cadastrarCliente);
 router.get('/conta', exigirCliente, consultarConta);
 router.put('/conta', exigirCliente, atualizarConta);

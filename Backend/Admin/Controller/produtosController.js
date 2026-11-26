@@ -4,7 +4,7 @@ const { randomUUID } = require('crypto');
 const sharp = require('sharp');
 const pool = require('../../db');
 
-const PASTA_IMAGENS = path.resolve(__dirname, '../../../Frontend/img');
+const PASTA_IMAGENS = path.resolve(__dirname, '../../../../Frontend/img');
 const CAMPOS_PRODUTO = `
     p.id_produto AS id,
     p.nome_prod AS nome,

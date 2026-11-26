@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gerencie os funcionários da loja Bellemi.">
+  <title>Gerenciar Funcionários | Bellemi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Cliente/cliente.css">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Funcionarios/funcionario.css">
+  <link rel="stylesheet" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Admin.css">
+</head>
+<body>
+  <header class="cabecalho-clientes">
+    <a class="btn-voltar-menu" href="/FernandaRichterPanciniak_4bim_Bellemi/Frontend/Admin/Menu/menu.html">← Voltar ao painel</a>
+    <h1>Gerenciar Funcionários</h1>
+    <p>Consulte os cadastros e atualize os dados da equipe.</p>
+  </header>
+
+  <main>
+    <section class="list-section" aria-labelledby="tituloFuncionarios">
+      <div class="gc-titulo-acoes">
+        <h2 id="tituloFuncionarios">Funcionários cadastrados</h2>
+        <button type="button" id="btnNovoFuncionario" class="gc-btn-salvar">Novo funcionário</button>
+      </div>
+      <div class="gc-filtros">
+        <div class="gc-campo">
+          <label for="buscarFuncionario">Buscar funcionário</label>
+          <input type="search" id="buscarFuncionario" placeholder="Nome, CPF, e-mail ou cargo...">
+        </div>
+        <button type="button" id="btnLimpar" class="btn-secondary">Limpar</button>
+      </div>
+
+      <p id="mensagem" class="gc-msg" role="status" aria-live="polite">Os funcionários aparecerão aqui quando forem carregados.</p>
+      <div class="table-container">
+        <table>
+          <caption>Funcionários cadastrados na loja</caption>
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">CPF</th>
+              <th scope="col">E-mail</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Cargo</th>
+              <th scope="col">Salário</th>
+              <th scope="col">Comissão</th>
+              <th scope="col">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabelaFuncionarios">
+            <tr><td colspan="8">Carregando funcionários...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer><p>&copy; 2026 Bellemi. Todos os direitos reservados.</p></footer>
+
+  <div id="modalFuncionario" class="gc-modal" aria-hidden="true" hidden>
+    <div class="gc-modal-conteudo" role="dialog" aria-modal="true" aria-labelledby="tituloModalFuncionario">
+      <div class="gc-modal-topo">
+        <div>
+          <h2 id="tituloModalFuncionario">Modificar detalhes</h2>
+          <p id="subtituloModalFuncionario">Atualize as informações do funcionário.</p>
+        </div>
+        <button type="button" id="btnFecharModal" class="gc-fechar" aria-label="Fechar">&times;</button>
+      </div>
+
+      <form id="formFuncionario">
+        <label for="funcionarioNome">Nome completo</label>
+        <input id="funcionarioNome" name="nome" type="text" maxlength="100" required>
+
+        <label for="funcionarioCpf">CPF</label>
+        <input id="funcionarioCpf" name="cpf" type="text" maxlength="11" inputmode="numeric" required readonly aria-describedby="avisoCpf">
+        <small id="avisoCpf">O CPF não pode ser alterado.</small>
+
+        <div class="gc-campo-modal" id="campoSenhaFuncionario" hidden>
+          <label for="funcionarioSenha">Senha inicial</label>
+          <input id="funcionarioSenha" name="senha" type="password" maxlength="20" autocomplete="new-password">
+        </div>
+
+        <label for="funcionarioEmail">E-mail</label>
+        <input id="funcionarioEmail" name="email" type="email" maxlength="250" required>
+
+        <label for="funcionarioTelefone">Telefone</label>
+        <input id="funcionarioTelefone" name="telefone" type="tel" maxlength="20">
+
+        <label for="funcionarioCargo">Cargo</label>
+        <input id="funcionarioCargo" name="cargo" type="text" maxlength="50" required>
+
+        <label for="funcionarioSalario">Salário (R$)</label>
+        <input id="funcionarioSalario" name="salario" type="number" min="0" step="1" required>
+
+        <label for="funcionarioComissao">Comissão (%)</label>
+        <input id="funcionarioComissao" name="comissao" type="number" min="0" max="100" step="1" placeholder="Deixe vazio se não houver">
+
+        <p id="mensagemModal" class="gc-msg" role="status" aria-live="polite"></p>
+        <div class="gc-acoes-modal">
+          <button type="button" id="btnCancelar" class="btn-secondary">Cancelar</button>
+          <button type="submit" id="btnSalvarFuncionario" class="gc-btn-salvar">Salvar alterações</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="./funcionario.js" defer></script>
+</body>
+</html>
