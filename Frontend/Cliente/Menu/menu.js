@@ -372,7 +372,7 @@ function desenharCarrinho() {
   document.getElementById('carrinhoTotal').textContent = reais(total);
   document.getElementById('finalizar').disabled = qtd === 0;
   listaCarrinho.innerHTML = qtd === 0
-    ? '<li class="vazio">Seu carrinho está vazio.<br><a class="botao suave" href="#destaques" data-fechar>Visualizar produtos</a></li>'
+    ? '<li class="vazio">Seu carrinho está vazio.<br><a class="botao suave" href="#categorias" data-fechar>Ver categorias</a></li>'
     : carrinho.map(p => `
       <li class="item-carrinho">
         <div class="info"><strong>${esc(p.nome)}</strong><span>${reais(p.preco)}</span></div>

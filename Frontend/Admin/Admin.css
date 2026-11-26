@@ -203,3 +203,168 @@ footer { color: var(--admin-suave); }
   #adminApp > main { padding: 22px 16px; }
   #dashboard { align-items: flex-start; flex-direction: column; }
 }
+
+/* Acabamento Bellemi para o painel e telas administrativas */
+body {
+  background:
+    radial-gradient(ellipse at 5% 8%, rgba(246, 187, 207, .4), transparent 30%),
+    radial-gradient(ellipse at 94% 82%, rgba(192, 218, 185, .42), transparent 34%),
+    #f8f7f4;
+}
+
+.admin-app > aside {
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(165deg, #edf3e9 0%, #e3eddf 58%, #f6e8ed 100%);
+  color: var(--admin-ameixa);
+  border-right: 1px solid rgba(110, 31, 63, .1);
+  box-shadow: 8px 0 28px rgba(58, 31, 48, .05);
+}
+.admin-app > aside h1 {
+  border-color: rgba(110, 31, 63, .14);
+  color: var(--admin-ameixa);
+}
+.admin-app > aside nav a {
+  color: #665660;
+  transition: background .2s, color .2s, transform .2s;
+}
+.admin-app > aside nav a:hover,
+.admin-app > aside nav a[aria-current="page"] {
+  border-color: rgba(168, 50, 94, .12);
+  background: linear-gradient(100deg, #f8e3eb, #fff7f8);
+  color: var(--admin-amora-escura);
+  transform: translateX(2px);
+}
+#sair {
+  border-color: rgba(168, 50, 94, .2);
+  background: rgba(255, 255, 255, .5);
+  color: var(--admin-amora-escura);
+}
+#sair:hover { background: #fff2f5; }
+
+#dashboard {
+  margin-bottom: 1.5rem;
+  padding: 1.2rem 1.45rem;
+  border: 1px solid rgba(168, 50, 94, .12);
+  border-radius: 1.2rem;
+  background: linear-gradient(110deg, rgba(255, 249, 251, .92), rgba(242, 247, 238, .92));
+  box-shadow: 0 8px 22px rgba(58, 31, 48, .05);
+}
+#dashboard > div:last-child { display: flex; align-items: center; gap: .7rem; }
+#dashboard span { padding: .55rem .8rem; border-radius: 999px; }
+#atualizarDashboard { padding: .65rem 1rem; border-radius: 999px; }
+
+#destaques article {
+  border-color: rgba(168, 50, 94, .12);
+  background: linear-gradient(145deg, #fffafb, #f2f7ef);
+}
+#destaques article:nth-child(2n) { background: linear-gradient(145deg, #fdf0f4, #f4f7f0); }
+#destaques article h3 { font-size: .95rem; }
+#destaques article p { font-size: 3rem; }
+#mais-vendidos { border: 1px solid rgba(168, 50, 94, .12); }
+#aguardando-aprovacao, #ultimos-pedidos {
+  border: 1px solid rgba(168, 50, 94, .12);
+  background: rgba(255, 253, 252, .92);
+}
+
+.cabecalho-clientes, .cabecalho-pedidos, .cabecalho-devolucoes, .cabecalho {
+  background: linear-gradient(100deg, rgba(255, 247, 250, .96), rgba(242, 247, 238, .96));
+  border-bottom-color: rgba(168, 50, 94, .14);
+}
+.list-section, .form-esquerda, .form-direita, .lista-unidades {
+  border-color: rgba(168, 50, 94, .14);
+  background: rgba(255, 253, 252, .93);
+  box-shadow: 0 12px 30px rgba(58, 31, 48, .06);
+}
+.table-container { overflow-x: auto; }
+tbody tr:nth-child(even) { background: rgba(239, 246, 235, .38); }
+
+@media (max-width: 768px) {
+  .admin-app > aside { position: static; min-height: auto; border-right: 0; }
+}
+
+/* Navegação lateral Bellemi */
+.admin-app > aside {
+  width: 248px;
+  padding: 26px 16px 20px;
+  background: linear-gradient(165deg, #f7e7ed 0%, #f4f2ed 48%, #e5eee1 100%);
+  box-shadow: 8px 0 26px rgba(58, 31, 48, .06);
+}
+.admin-app > aside h1 {
+  position: relative;
+  padding: 0 10px 20px;
+  font-size: 1.8rem;
+  line-height: 1;
+}
+.admin-app > aside h1::after {
+  content: "PAINEL DA LOJA";
+  display: block;
+  margin-top: .55rem;
+  color: #8d7180;
+  font: 600 .66rem/1.2 "Jost", "Segoe UI", sans-serif;
+  letter-spacing: .16em;
+}
+.admin-app > aside nav ul { gap: 7px; }
+.admin-app > aside nav a {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  min-height: 46px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: .85rem;
+  color: #62535e;
+  font-weight: 500;
+}
+.admin-app > aside nav a::before {
+  display: grid;
+  flex: 0 0 1.85rem;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border: 1px solid rgba(168, 50, 94, .12);
+  border-radius: .65rem;
+  background: rgba(255, 255, 255, .7);
+  color: #a8325e;
+  font: 600 .68rem/1 "Jost", "Segoe UI", sans-serif;
+  letter-spacing: .03em;
+}
+.admin-app > aside nav li:nth-child(1) a::before { content: "01"; }
+.admin-app > aside nav li:nth-child(2) a::before { content: "02"; }
+.admin-app > aside nav li:nth-child(3) a::before { content: "03"; }
+.admin-app > aside nav li:nth-child(4) a::before { content: "04"; }
+.admin-app > aside nav li:nth-child(5) a::before { content: "05"; }
+.admin-app > aside nav li:nth-child(6) a::before { content: "06"; }
+.admin-app > aside nav a:hover,
+.admin-app > aside nav a[aria-current="page"] {
+  border-color: rgba(168, 50, 94, .15);
+  background: rgba(255, 250, 251, .86);
+  color: #86264a;
+  box-shadow: 0 5px 13px rgba(58, 31, 48, .05);
+  transform: translateX(2px);
+}
+.admin-app > aside nav a[aria-current="page"]::before {
+  border-color: transparent;
+  background: linear-gradient(145deg, #a8325e, #759b74);
+  color: #fff;
+}
+.admin-app > aside #sair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  min-height: 42px;
+  border-color: rgba(168, 50, 94, .16);
+  border-radius: .85rem;
+  background: rgba(255, 250, 251, .72);
+  color: #86264a;
+}
+.admin-app > aside #sair::before { content: "↪"; color: #759b74; font-size: 1.1rem; }
+.admin-app > aside #sair:hover { background: #fff7f9; }
+
+@media (max-width: 768px) {
+  .admin-app > aside { width: 100%; padding: 18px; }
+  .admin-app > aside nav ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

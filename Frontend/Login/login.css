@@ -165,19 +165,6 @@ body::before {
   margin-top: .5rem;
 }
 
-.escolha-perfil h2 {
-  margin: 0;
-  color: var(--ameixa);
-  font: 600 1.65rem/1.1 var(--display);
-  text-align: center;
-}
-
-.escolha-perfil p {
-  margin: 0 0 .35rem;
-  color: var(--suave);
-  text-align: center;
-}
-
 .escolha-perfil .botao-perfil {
   width: 100%;
   min-height: 2.75rem;
